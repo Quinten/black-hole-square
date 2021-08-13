@@ -21,11 +21,6 @@
       "isDown": false
     }
   },
-  "bg": {
-    "fillrect": {
-      "fill": "#444444"
-    }
-  },
   "player": {
     "position": {
       "x": 0,
@@ -36,12 +31,12 @@
       "h": 48
     },
     "fillrect": {
-      "fill": "white"
+      "fill": "black"
     }
   },
   "test": {
     "state": {
-      "draws": ["bg", "player"],
+      "draws": ["player"],
       "updates": ["player"]
     }
   }
