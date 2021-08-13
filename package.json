@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "deploy": "npm run build;git add public;git commit -m \"New build\";git push;git subtree push --prefix public origin gh-pages;"
+    "zip": "zip -r bhs.zip public && stat -c %s bhs.zip",
+    "deploy": "npm run build;git add public;git commit -m \"New build\";git push;git subtree push --prefix public origin gh-pages;npm run zip;"
   },
   "repository": {
     "type": "git",
