@@ -45,10 +45,6 @@ module.exports = (env, argv) => {
                         to: 'manifest.json'
                     },
                     {
-                        from: 'src/assets/favicon.ico',
-                        to: 'favicon.ico'
-                    },
-                    {
                         from: 'src/assets/icon.png',
                         to: 'icon.png'
                     }
