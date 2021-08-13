@@ -1,0 +1,20 @@
+{
+  "name": "Black Hole Square",
+  "short_name": "BHS",
+  "description": "Clean the universe!",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "foreground_color": "#FFFFFF",
+  "author": "Quinten",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "type": "image/png",
+      "sizes": "1024x1024",
+      "purpose": "any maskable"
+    }
+  ]
+}

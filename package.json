@@ -1,0 +1,28 @@
+{
+  "name": "black-hole-square",
+  "version": "0.0.1",
+  "description": "bhs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "deploy": "npm run build;git add public;git commit -m \"New build\";git push;git subtree push --prefix public origin gh-pages;git stash;git checkout gh-pages;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quinten/black-hole-square.git"
+  },
+  "author": "Quinten",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Quinten/black-hole-square/issues"
+  },
+  "homepage": "https://github.com/Quinten/black-hole-square#readme",
+  "devDependencies": {
+    "copy-webpack-plugin": "^9.0.1",
+    "html-webpack-plugin": "^5.3.2",
+    "webpack": "^5.48.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

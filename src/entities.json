@@ -1,0 +1,48 @@
+{
+  "game": {
+    "canvas": {
+      "w": 320,
+      "h": 320,
+      "tW": 320,
+      "tH": 320,
+      "gW": 320,
+      "gH": 320,
+      "zoom": 1,
+      "parentSelector": "body"
+    },
+    "statemachine": {
+      "active": ["test"]
+    },
+    "pointer": {
+      "x": 0,
+      "y": 0,
+      "justDown": false,
+      "justUp": false,
+      "isDown": false
+    }
+  },
+  "bg": {
+    "fillrect": {
+      "fill": "#444444"
+    }
+  },
+  "player": {
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "size": {
+      "w": 48,
+      "h": 48
+    },
+    "fillrect": {
+      "fill": "white"
+    }
+  },
+  "test": {
+    "state": {
+      "draws": ["bg", "player"],
+      "updates": ["player"]
+    }
+  }
+}
