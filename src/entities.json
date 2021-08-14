@@ -11,7 +11,7 @@
       "parentSelector": "body"
     },
     "statemachine": {
-      "active": ["test"]
+      "active": ["level"]
     },
     "pointer": {
       "x": 0,
@@ -34,10 +34,23 @@
       "fill": "black"
     }
   },
-  "test": {
+  "level1": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 1, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true
+    }
+  },
+  "level": {
     "state": {
       "draws": ["player"],
-      "updates": ["player"]
+      "updates": ["level1"]
     }
   }
 }
