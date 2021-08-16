@@ -15,15 +15,15 @@ import entitySystem from '../entity.js';
  */
 
 let pieces = [
-    ['position', 'size'],
-    ['position', 'size', 'blackhole'],
-    ['position', 'size', 'blanksquare'],
-    ['position', 'size', 'xsquare'],
-    ['position', 'size', 'arrowup'],
-    ['position', 'size', 'arrowright'],
-    ['position', 'size', 'arrowdown'],
-    ['position', 'size', 'arrowleft'],
-    ['position', 'size', 'fillrect']
+    ['position', 'size', 'home'],
+    ['position', 'size', 'home', 'blackhole'],
+    ['position', 'size', 'home', 'blanksquare'],
+    ['position', 'size', 'home', 'xsquare'],
+    ['position', 'size', 'home', 'arrowup'],
+    ['position', 'size', 'home', 'arrowright'],
+    ['position', 'size', 'home', 'arrowdown'],
+    ['position', 'size', 'home', 'arrowleft'],
+    ['position', 'size', 'home', 'fillrect']
 ];
 
 let update = (entities, entity, time, delta) => {
@@ -39,10 +39,146 @@ let update = (entities, entity, time, delta) => {
                 id,
                 ...pieces[p]
             );
-            entity.position.x = 16 + x * 48;
-            entity.position.y = 16 + y * 48;
+            entity.position.x = entity.home.x = 16 + x * 48;
+            entity.position.y = entity.home.y = 16 + y * 48;
             state.draws.push(id);
             state.updates.push(id);
+            let topid = 'top' + i;
+            let topentity = entitySystem.add(
+                entities,
+                topid,
+                ...pieces[0]
+            );
+            topentity.position.x = topentity.home.x = 16 + x * 48;
+            topentity.position.y = topentity.home.y = 16 + y * 48;
+            state.draws.push(topid);
+            state.updates.push(topid);
+        });
+        console.log(entities);
+    }
+    if (entities.game.pointer.justUp === true) {
+        let x = entities.game.pointer.x
+            - 16 - (entities.game.canvas.gW - entities.game.canvas.tW) / 2;
+        let y = entities.game.pointer.y
+            - 16 - (entities.game.canvas.gH - entities.game.canvas.tH) / 2;
+        if (x < 0 || x > 288 || y < 0 || y > 288) {
+            return;
+        }
+        x =  (x / 48) | 0;
+        y = (y / 48) | 0;
+        let i = x + y * 6;
+        //console.log('klik', i);
+        let moves = {
+            arrowup: {
+                search: -6,
+                max: 35,
+                min: 0
+            },
+            arrowright: {
+                search: 1,
+                max: i + (5 - (i % 6)),
+                min: i - (i % 6)
+            },
+            arrowdown: {
+                search: 6,
+                max: 35,
+                min: 0
+            },
+            arrowleft: {
+                search: -1,
+                max: i + (5 - (i % 6)),
+                min: i - (i % 6)
+            }
+        };
+        let shiftPieces = (search, max, min) => {
+            //console.log('push stuff down');
+            let next = entities['piece' + i];
+            let j = i;
+            let changes = [];
+            let stop = false;
+            while (!stop) {
+                next = entities['piece' + j];
+                if ([
+                    'blanksquare',
+                    'xsquare',
+                    'arrowup',
+                    'arrowright',
+                    'arrowdown',
+                    'arrowleft'
+                ].some(prop => next[prop] !== undefined)) {
+                    changes.unshift('top' + j);
+                    changes.push('piece' + j);
+                } else {
+                    if (next.blackhole !== undefined) {
+                        changes.unshift('top' + j);
+                    } else {
+                        changes.unshift('top' + j);
+                        changes.push('piece' + j);
+                    }
+                    stop = true;
+                    break;
+                }
+                j = j + search;
+                if (j > max || j < min) {
+                    changes = [];
+                    stop = true;
+                }
+            }
+            if (changes.length < 1) {
+                return;
+            }
+            //console.log(changes);
+            let firstId = changes.shift();
+            let prevId = firstId;
+            let prev = entities[firstId];
+            let firstHome = prev.home;
+            let nextHome;
+            let nextE;
+            changes.forEach(id => {
+                nextE = entities[id];
+                nextHome = nextE.home;
+                entities[id] = prev;
+                entities[id].home = nextHome;
+                prev = nextE;
+                // tmp make thing normal
+                prevId = id;
+            });
+            entities[firstId] = prev;
+            entities[firstId].home = firstHome;
+            [
+                'blanksquare',
+                'xsquare',
+                'arrowup',
+                'arrowright',
+                'arrowdown',
+                'arrowleft'
+            ].forEach(prop => {
+                delete entities[firstId][prop];
+            });
+        };
+        let clicked = entities['piece' + i];
+        Object.keys(moves).forEach(move => {
+            if (clicked[move]) {
+                shiftPieces(
+                    moves[move].search,
+                    moves[move].max,
+                    moves[move].min
+                );
+                if (!entity.puzzle.grid.some((e, i) => [
+                        'blanksquare',
+                        'xsquare',
+                        'arrowup',
+                        'arrowright',
+                        'arrowdown',
+                        'arrowleft'
+                    ].some(prop => entities['piece' + i][prop] !== undefined)
+                )) {
+                    entity.puzzle.init = true;
+                    let state = entities.level.state;
+                    state.updates = ['level1'];
+                    state.draws = [];
+                }
+            }
         });
     }
 };
