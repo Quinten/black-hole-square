@@ -18,11 +18,11 @@ let pieces = [
     ['position', 'size'],
     ['position', 'size', 'blackhole'],
     ['position', 'size', 'blanksquare'],
-    ['position', 'size', 'fillrect'],
-    ['position', 'size', 'fillrect'],
-    ['position', 'size', 'fillrect'],
-    ['position', 'size', 'fillrect'],
-    ['position', 'size', 'fillrect'],
+    ['position', 'size', 'xsquare'],
+    ['position', 'size', 'arrowup'],
+    ['position', 'size', 'arrowright'],
+    ['position', 'size', 'arrowdown'],
+    ['position', 'size', 'arrowleft'],
     ['position', 'size', 'fillrect']
 ];
 
