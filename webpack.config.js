@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
+const JsonMinimizerPlugin = require("json-minimizer-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 
 const manifest = require('./src/manifest.json');
@@ -68,6 +69,13 @@ module.exports = (env, argv) => {
                 noAssetMatch: 'warn'
             })
         );
+        webpackConfig.optimization = {
+            minimize: true,
+            minimizer: [
+                `...`,
+                new JsonMinimizerPlugin(),
+            ]
+        };
         // TODO: add service worker here
     }
 
