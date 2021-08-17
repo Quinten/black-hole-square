@@ -36,15 +36,17 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 ...manifest,
-                chunks : ['index.js'],
+                chunks : ['index'],
                 template: './src/index.html',
                 filename: 'index.html'
             }),
+            /*
             new InlineSourceWebpackPlugin({
                 compress: true,
                 rootpath: './src',
                 noAssetMatch: 'warn'
             }),
+            */
             new CopyPlugin({
                 patterns: [
                     {
@@ -62,8 +64,7 @@ module.exports = (env, argv) => {
         devServer: {
             contentBase: "./public",
             host: "0.0.0.0",
-            port: 3000,
-            inline: true
+            port: 3000
         }
     }
 
