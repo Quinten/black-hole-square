@@ -19,9 +19,16 @@
       "justDown": false,
       "justUp": false,
       "isDown": false
+    },
+    "levels": {
+      "sequence": [
+        "learnpush",
+        "firsttest"
+      ],
+      "current": 0
     }
   },
-  "level1": {
+  "firsttest": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -31,13 +38,26 @@
         0, 0, 5, 0, 1, 0,
         0, 0, 0, 0, 0, 0
       ],
+      "init": false
+    }
+  },
+  "learnpush": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 5, 2, 0, 1, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
       "init": true
     }
   },
   "level": {
     "state": {
       "draws": [],
-      "updates": ["level1"]
+      "updates": ["learnpush"]
     }
   }
 }

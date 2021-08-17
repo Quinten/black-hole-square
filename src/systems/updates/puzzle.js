@@ -178,9 +178,13 @@ let update = (entities, entity, time, delta) => {
                         'arrowleft'
                     ].some(prop => entities['piece' + i][prop] !== undefined)
                 )) {
-                    entity.puzzle.init = true;
+                    let levels = entities.game.levels;
+                    levels.current = (levels.current + 1)
+                        % levels.sequence.length;
+                    let puzzleId = levels.sequence[levels.current];
+                    entities[puzzleId].puzzle.init = true;
                     let state = entities.level.state;
-                    state.updates = ['level1'];
+                    state.updates = [puzzleId];
                     state.draws = [];
                 }
             }
