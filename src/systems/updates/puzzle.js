@@ -69,25 +69,33 @@ let update = (entities, entity, time, delta) => {
         let i = x + y * 6;
         //console.log('klik', i);
         let moves = {
-            arrowup: {
-                search: -6,
-                max: 35,
-                min: 0
+            arrowup: _ => {
+                shiftPieces(
+                    -6,
+                    35,
+                    0
+                );
             },
-            arrowright: {
-                search: 1,
-                max: i + (5 - (i % 6)),
-                min: i - (i % 6)
+            arrowright: _ => {
+                shiftPieces(
+                    1,
+                    i + (5 - (i % 6)),
+                    i - (i % 6)
+                );
             },
-            arrowdown: {
-                search: 6,
-                max: 35,
-                min: 0
+            arrowdown: _ => {
+                shiftPieces(
+                    6,
+                    35,
+                    0
+                );
             },
-            arrowleft: {
-                search: -1,
-                max: i + (5 - (i % 6)),
-                min: i - (i % 6)
+            arrowleft: _ => {
+                shiftPieces(
+                    -1,
+                    i + (5 - (i % 6)),
+                    i - (i % 6)
+                );
             }
         };
         let shiftPieces = (search, max, min) => {
@@ -159,11 +167,8 @@ let update = (entities, entity, time, delta) => {
         let clicked = entities['piece' + i];
         Object.keys(moves).forEach(move => {
             if (clicked[move]) {
-                shiftPieces(
-                    moves[move].search,
-                    moves[move].max,
-                    moves[move].min
-                );
+                moves[move]();
+                // check puzzle complete
                 if (!entity.puzzle.grid.some((e, i) => [
                         'blanksquare',
                         'xsquare',
