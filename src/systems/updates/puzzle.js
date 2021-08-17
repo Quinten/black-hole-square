@@ -174,6 +174,7 @@ let update = (entities, entity, time, delta) => {
         Object.keys(moves).forEach(move => {
             if (clicked[move]) {
                 moves[move]();
+
                 // check puzzle complete
                 if (!entity.puzzle.grid.some((e, i) => [
                         'blanksquare',
@@ -187,6 +188,23 @@ let update = (entities, entity, time, delta) => {
                     let levels = entities.game.levels;
                     levels.current = (levels.current + 1)
                         % levels.sequence.length;
+                    let puzzleId = levels.sequence[levels.current];
+                    entities[puzzleId].puzzle.init = true;
+                    let state = entities.level.state;
+                    state.updates = [puzzleId];
+                    state.draws = [];
+
+                // check for game over based on no clickables left
+                } else if (!entity.puzzle.grid.some((e, i) => [
+                        'xsquare',
+                        'arrowup',
+                        'arrowright',
+                        'arrowdown',
+                        'arrowleft'
+                    ].some(prop => entities['piece' + i][prop] !== undefined)
+                )) {
+                    //console.log('No clickables left, but blank squares left!');
+                    let levels = entities.game.levels;
                     let puzzleId = levels.sequence[levels.current];
                     entities[puzzleId].puzzle.init = true;
                     let state = entities.level.state;
