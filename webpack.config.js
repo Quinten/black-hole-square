@@ -4,6 +4,7 @@ const path = require('path');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const manifest = require('./src/manifest.json');
@@ -34,7 +35,7 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 ...manifest,
-                chunks : ['index'],
+                chunks : ['index.js'],
                 template: './src/index.html',
                 filename: 'index.html'
             }),
@@ -60,6 +61,13 @@ module.exports = (env, argv) => {
     }
 
     if (!devMode) {
+        webpackConfig.plugins.push(
+            new InlineSourceWebpackPlugin({
+                compress: true,
+                rootpath: './src',
+                noAssetMatch: 'warn'
+            })
+        );
         // TODO: add service worker here
     }
 
