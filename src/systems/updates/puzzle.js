@@ -96,6 +96,12 @@ let update = (entities, entity, time, delta) => {
                     i + (5 - (i % 6)),
                     i - (i % 6)
                 );
+            },
+            xsquare: _ => {
+                // remove square
+                // TODO proper disappear animation
+                // TODO store for undo
+                delete entities['piece' + i].xsquare;
             }
         };
         let shiftPieces = (search, max, min) => {
@@ -137,7 +143,6 @@ let update = (entities, entity, time, delta) => {
             }
             //console.log(changes);
             let firstId = changes.shift();
-            let prevId = firstId;
             let prev = entities[firstId];
             let firstHome = prev.home;
             let nextHome;
@@ -148,10 +153,11 @@ let update = (entities, entity, time, delta) => {
                 entities[id] = prev;
                 entities[id].home = nextHome;
                 prev = nextE;
-                // tmp make thing normal
-                prevId = id;
             });
             entities[firstId] = prev;
+            // remove square
+            // TODO proper disappear animation
+            // TODO store for undo
             entities[firstId].home = firstHome;
             [
                 'blanksquare',

@@ -22,8 +22,11 @@
     },
     "levels": {
       "sequence": [
+        "groundzero",
         "learnpush",
-        "firsttest"
+        "firsttest",
+        "breakflow",
+        "timebreak"
       ],
       "current": 0
     }
@@ -38,7 +41,7 @@
         0, 0, 5, 0, 1, 0,
         0, 0, 0, 0, 0, 0
       ],
-      "init": false
+      "init": true
     }
   },
   "learnpush": {
@@ -54,10 +57,49 @@
       "init": true
     }
   },
+  "groundzero": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 3, 3, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true
+    }
+  },
+  "breakflow": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 6, 0, 0, 0,
+        0, 0, 2, 0, 0, 0,
+        0, 0, 3, 7, 0, 0,
+        0, 0, 1, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true
+    }
+  },
+  "timebreak": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 6, 0, 0,
+        5, 2, 3, 2, 2, 1,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true
+    }
+  },
   "level": {
     "state": {
       "draws": [],
-      "updates": ["learnpush"]
+      "updates": ["groundzero"]
     }
   }
 }
