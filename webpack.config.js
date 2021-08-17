@@ -40,6 +40,11 @@ module.exports = (env, argv) => {
                 template: './src/index.html',
                 filename: 'index.html'
             }),
+            new InlineSourceWebpackPlugin({
+                compress: true,
+                rootpath: './src',
+                noAssetMatch: 'warn'
+            }),
             new CopyPlugin({
                 patterns: [
                     {
@@ -62,13 +67,6 @@ module.exports = (env, argv) => {
     }
 
     if (!devMode) {
-        webpackConfig.plugins.push(
-            new InlineSourceWebpackPlugin({
-                compress: true,
-                rootpath: './src',
-                noAssetMatch: 'warn'
-            })
-        );
         webpackConfig.optimization = {
             minimize: true,
             minimizer: [
