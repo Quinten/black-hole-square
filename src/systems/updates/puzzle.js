@@ -30,6 +30,7 @@ let update = (entities, entity, time, delta) => {
     if (entity.puzzle.init === true) {
         entity.puzzle.init = false;
         let state = entities.level.state;
+        state.draws = ["bg", "bgcut"];
         entity.puzzle.grid.forEach((p, i) => {
             let x = i % 6;
             let y = (i / 6) | 0;
@@ -40,7 +41,7 @@ let update = (entities, entity, time, delta) => {
                 ...pieces[p]
             );
             entity.position.x = entity.home.x = 16 + x * 48;
-            entity.position.y = entity.home.y = 64 + y * 48;
+            entity.position.y = entity.home.y = 62 + y * 48;
             state.draws.push(id);
             state.updates.push(id);
             let topid = 'top' + i;
@@ -50,7 +51,7 @@ let update = (entities, entity, time, delta) => {
                 ...pieces[0]
             );
             topentity.position.x = topentity.home.x = 16 + x * 48;
-            topentity.position.y = topentity.home.y = 64 + y * 48;
+            topentity.position.y = topentity.home.y = 62 + y * 48;
             state.draws.push(topid);
             state.updates.push(topid);
         });
@@ -60,7 +61,7 @@ let update = (entities, entity, time, delta) => {
         let x = entities.game.pointer.x
             - 16 - (entities.game.canvas.gW - entities.game.canvas.tW) / 2;
         let y = entities.game.pointer.y
-            - 64 - (entities.game.canvas.gH - entities.game.canvas.tH) / 2;
+            - 62 - (entities.game.canvas.gH - entities.game.canvas.tH) / 2;
         if (x < 0 || x > 288 || y < 0 || y > 288) {
             return;
         }
@@ -156,7 +157,6 @@ let update = (entities, entity, time, delta) => {
             });
             entities[firstId] = prev;
             // remove square
-            // TODO proper disappear animation
             // TODO store for undo
             entities[firstId].home = firstHome;
             entities[firstId].home.suck = true;
@@ -195,7 +195,6 @@ let update = (entities, entity, time, delta) => {
                     entities[puzzleId].puzzle.init = true;
                     let state = entities.level.state;
                     state.updates = [puzzleId];
-                    state.draws = [];
 
                 // check for game over based on no clickables left
                 } else if (!entity.puzzle.grid.some((e, i) => [
@@ -212,7 +211,6 @@ let update = (entities, entity, time, delta) => {
                     entities[puzzleId].puzzle.init = true;
                     let state = entities.level.state;
                     state.updates = [puzzleId];
-                    state.draws = [];
                 }
             }
         });

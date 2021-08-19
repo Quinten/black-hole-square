@@ -13,7 +13,6 @@ let update = (entities, entity, time, delta) => {
         entities[puzzleId].puzzle.init = true;
         let state = entities.level.state;
         state.updates = [puzzleId];
-        state.draws = [];
     }
 };
 
