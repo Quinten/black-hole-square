@@ -1,4 +1,6 @@
 {
   "x": 0,
-  "y": 0
+  "y": 0,
+  "drop": false,
+  "suck": false
 }

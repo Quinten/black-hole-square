@@ -159,6 +159,8 @@ let update = (entities, entity, time, delta) => {
             // TODO proper disappear animation
             // TODO store for undo
             entities[firstId].home = firstHome;
+            entities[firstId].home.suck = true;
+/*
             [
                 'blanksquare',
                 'xsquare',
@@ -169,6 +171,7 @@ let update = (entities, entity, time, delta) => {
             ].forEach(prop => {
                 delete entities[firstId][prop];
             });
+            */
         };
         let clicked = entities['piece' + i];
         Object.keys(moves).forEach(move => {
