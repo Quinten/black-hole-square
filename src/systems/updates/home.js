@@ -1,7 +1,7 @@
 let update = (entities, entity, time, delta) => {
     if (entity.position !== undefined) {
         entity.position.x = entity.position.x
-            + (entity.home.x - entity.position.x) / 4 * delta / 17;
+            + (entity.home.x - entity.position.x) / 3 * delta / 17;
         if (
             Math.abs(entity.home.x - entity.position.x)
                 < 1 / entities.game.canvas.zoom
@@ -13,7 +13,7 @@ let update = (entities, entity, time, delta) => {
             yHome = yHome + 48;
         }
         entity.position.y = entity.position.y
-            + (yHome - entity.position.y) / 4 * delta / 17;
+            + (yHome - entity.position.y) / 3 * delta / 17;
         if (
             Math.abs(yHome - entity.position.y)
                 < 1 / entities.game.canvas.zoom
