@@ -30,7 +30,7 @@ let update = (entities, entity, time, delta) => {
     if (entity.puzzle.init === true) {
         entity.puzzle.init = false;
         let state = entities.level.state;
-        state.draws = ["bg", "bgcut"];
+        state.draws = [];
         entity.puzzle.grid.forEach((p, i) => {
             let x = i % 6;
             let y = (i / 6) | 0;

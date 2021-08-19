@@ -104,7 +104,7 @@
   },
   "controls": {
     "state": {
-      "draws": ["fg", "resetbutton"],
+      "draws": ["bgcut", "bgout", "resetbutton"],
       "updates": ["resetbutton"]
     }
   },
@@ -116,25 +116,24 @@
     },
     "resetbutton": {}
   },
-  "fg": {
-    "position": {
-      "x": 16,
-      "y": 64,
-      "origin": "game"
-    },
-    "fg": {}
-  },
-  "bg": {
-    "fillrect": {
-      "fill": "#0E181B"
-    }
-  },
   "bgcut": {
     "position": {
       "x": 16,
       "y": 64,
       "origin": "game"
     },
-    "bgcut": {}
+    "bgcut": {
+      "fill": "#1F363D"
+    }
+  },
+  "bgout": {
+    "position": {
+      "x": 16,
+      "y": 68,
+      "origin": "game"
+    },
+    "bgcut": {
+      "fill": "#16272C"
+    }
   }
 }
