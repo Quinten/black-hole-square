@@ -1,7 +1,7 @@
 let update = (entities, entity, time, delta) => {
     if (entity.position !== undefined) {
-        entity.position.x = entities.game.canvas.gW - 52;
-        entity.position.y = 4;
+        entity.position.x = entities.game.canvas.gW - 48;
+        entity.position.y = 0;
     }
     let pointer = entities.game.pointer;
     if (pointer.justUp) {

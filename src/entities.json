@@ -2,11 +2,11 @@
   "game": {
     "canvas": {
       "w": 320,
-      "h": 320,
+      "h": 416,
       "tW": 320,
-      "tH": 320,
+      "tH": 416,
       "gW": 320,
-      "gH": 320,
+      "gH": 416,
       "zoom": 1,
       "parentSelector": "body"
     },
