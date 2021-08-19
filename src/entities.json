@@ -11,7 +11,7 @@
       "parentSelector": "body"
     },
     "statemachine": {
-      "active": ["level"]
+      "active": ["level", "controls"]
     },
     "pointer": {
       "x": 0,
@@ -101,5 +101,19 @@
       "draws": [],
       "updates": ["groundzero"]
     }
+  },
+  "controls": {
+    "state": {
+      "draws": ["resetbutton"],
+      "updates": ["resetbutton"]
+    }
+  },
+  "resetbutton": {
+    "position": {
+      "x": 0,
+      "y": 0,
+      "origin": "canvas"
+    },
+    "resetbutton": {}
   }
 }
