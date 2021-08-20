@@ -132,7 +132,7 @@
   },
   "controls": {
     "state": {
-      "draws": ["bgcut", "bgout", "resetbutton"],
+      "draws": ["bgcut", "bgout", "tunnel", "resetbutton"],
       "updates": ["resetbutton"]
     }
   },
@@ -161,6 +161,11 @@
       "origin": "game"
     },
     "bgcut": {
+      "fill": "#16272C"
+    }
+  },
+  "tunnel": {
+    "tunnel": {
       "fill": "#16272C"
     }
   }
