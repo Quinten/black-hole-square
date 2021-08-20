@@ -3,6 +3,16 @@ import drawSystem from './draw.js';
 import resizeSystem from './resize.js';
 import pointerSystem from './pointer.js';
 
+/*
+if (document.monetization) {
+    document.monetization.addEventListener(
+        'monetizationstart',
+        _ => {
+        }
+    );
+}
+*/
+
 let setup = (entities) => {
     let game = entities.game;
     let ctx;
