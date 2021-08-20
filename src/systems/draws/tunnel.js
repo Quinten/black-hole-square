@@ -55,7 +55,7 @@ let draw = (entities, entity, ctx) => {
             let [x, y] = rotate(p.x, p.y, q.rotation);
             arg.push(...project(
                 entities.game.canvas.gW/2,
-                entities.game.canvas.gH/2, 
+                entities.game.canvas.gH/2,
                 fl, x, y, p.z
             ));
         });
