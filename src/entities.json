@@ -7,6 +7,10 @@
       "tH": 416,
       "gW": 320,
       "gH": 416,
+      "oX": 0,
+      "oY": 48,
+      "gX": 0,
+      "gY": 48,
       "zoom": 1,
       "parentSelector": "body"
     },
@@ -16,6 +20,8 @@
     "pointer": {
       "x": 0,
       "y": 0,
+      "deltaX": 0,
+      "deltaY": 0,
       "justDown": false,
       "justUp": false,
       "isDown": false

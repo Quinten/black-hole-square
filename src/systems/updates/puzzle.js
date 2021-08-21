@@ -57,6 +57,18 @@ let update = (entities, entity, time, delta) => {
         });
         console.log(entities);
     }
+    let game = entities.game;
+    if (game.pointer.isDown === true) {
+        //game.canvas.oX = game.canvas.oX
+            //+ game.pointer.deltaX;
+        game.canvas.oY = game.canvas.oY
+            + game.pointer.deltaY;
+    } else {
+        game.canvas.oX = game.canvas.oX
+            + (game.canvas.gX - game.canvas.oX) / 6 * delta / 17;
+        game.canvas.oY = game.canvas.oY
+            + (game.canvas.gY - game.canvas.oY) / 6 * delta / 17;
+    }
     if (entities.game.pointer.justUp === true) {
         let x = entities.game.pointer.x
             - 16 - (entities.game.canvas.gW - entities.game.canvas.tW) / 2;

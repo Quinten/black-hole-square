@@ -25,6 +25,10 @@ let add = (game, canvas) => {
                 game.canvas.gW = game.canvas.tW;
                 game.canvas.gH = game.canvas.tW * game.canvas.h / game.canvas.w;
             }
+            let offsetX = (game.canvas.gW - game.canvas.tW) / 2;
+            let offsetY = (game.canvas.gH - game.canvas.tH) / 2;
+            game.canvas.gX = offsetX;
+            game.canvas.gY = offsetY;
         }, 40);
     };
     onR();

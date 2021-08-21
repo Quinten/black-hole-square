@@ -8,6 +8,8 @@ let add = (game, canvas) => {
     let pointerY;
 
     let handlePointerDown = (x, y) => {
+        pointer.deltaX = 0;
+        pointer.deltaY = 0;
         pointer.x = x;
         pointer.y = y;
         pointer.justDown = true;
@@ -15,11 +17,15 @@ let add = (game, canvas) => {
     };
 
     let handlePointerMove = (x, y) => {
+        pointer.deltaX = x - pointer.x;
+        pointer.deltaY = y - pointer.y;
         pointer.x = x;
         pointer.y = y;
     };
 
     let handlePointerUp = (x, y) => {
+        pointer.deltaX = x - pointer.x;
+        pointer.deltaY = y - pointer.y;
         pointer.x = x;
         pointer.y = y;
         pointer.justUp = true;

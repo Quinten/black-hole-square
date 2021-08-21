@@ -5,8 +5,8 @@ let transform = (entities, entity, ctx) => {
 
     if (entity.position.origin === 'game') {
         let canvas = entities.game.canvas;
-        offsetX = (canvas.gW - canvas.tW) / 2;
-        offsetY = (canvas.gH - canvas.tH) / 2;
+        offsetX = canvas.oX;
+        offsetY = canvas.oY;
     }
 
     ctx.translate(
