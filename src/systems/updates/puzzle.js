@@ -26,6 +26,10 @@ let pieces = [
     ['position', 'size', 'home', 'fillrect']
 ];
 
+let swipedRight = false;
+let swipedLeft = false;
+let swipeWait = 0;
+
 let update = (entities, entity, time, delta) => {
     if (entity.puzzle.init === true) {
         entity.puzzle.init = false;
@@ -59,17 +63,58 @@ let update = (entities, entity, time, delta) => {
     }
     let game = entities.game;
     if (game.pointer.isDown === true) {
-        //game.canvas.oX = game.canvas.oX
-            //+ game.pointer.deltaX;
-        game.canvas.oY = game.canvas.oY
-            + game.pointer.deltaY;
+        game.canvas.oX = game.canvas.gX
+            + (game.pointer.x - game.pointer.downX);
+        game.canvas.oY = game.canvas.gY;
     } else {
+        let homeX = game.canvas.gX;
+        let dir = 1;
+        if (swipeWait <= 0 && swipedLeft) {
+            homeX = homeX - game.canvas.gW;
+        }
+        if (swipeWait <= 0 && swipedRight) {
+            homeX = homeX + game.canvas.gW;
+            dir = -1;
+        }
         game.canvas.oX = game.canvas.oX
-            + (game.canvas.gX - game.canvas.oX) / 6 * delta / 17;
-        game.canvas.oY = game.canvas.oY
-            + (game.canvas.gY - game.canvas.oY) / 6 * delta / 17;
+            + (homeX - game.canvas.oX) / 6 * delta / 17;
+        game.canvas.oY = game.canvas.gY;
+        if (swipeWait <= 0 && (swipedLeft || swipedRight)) {
+            if (
+                Math.abs(homeX - game.canvas.oX)
+                < 1 / entities.game.canvas.zoom
+            ) {
+                swipedLeft = false;
+                swipedRight = false;
+                let levels = entities.game.levels;
+                levels.current = (levels.current + dir
+                    + levels.sequence.length)
+                    % levels.sequence.length;
+                let puzzleId = levels.sequence[levels.current];
+                entities[puzzleId].puzzle.init = true;
+                let state = entities.level.state;
+                state.updates = [puzzleId];
+                game.canvas.oX = game.canvas.oX + game.canvas.gW * 2 * dir;
+            }
+            return;
+        } else {
+            swipeWait = swipeWait - delta;
+        }
     }
     if (entities.game.pointer.justUp === true) {
+        let swipeX = game.pointer.x - game.pointer.downX;
+        if (swipeX > 48) {
+            //console.log('swipe right');
+            swipedRight = true;
+            swipeWait = 0;
+            return;
+        }
+        if (swipeX < -48) {
+            //console.log('swipe left');
+            swipedLeft = true;
+            swipeWait = 0;
+            return;
+        }
         let x = entities.game.pointer.x
             - 16 - (entities.game.canvas.gW - entities.game.canvas.tW) / 2;
         let y = entities.game.pointer.y
@@ -200,14 +245,8 @@ let update = (entities, entity, time, delta) => {
                         'arrowleft'
                     ].some(prop => entities['piece' + i][prop] !== undefined)
                 )) {
-                    let levels = entities.game.levels;
-                    levels.current = (levels.current + 1)
-                        % levels.sequence.length;
-                    let puzzleId = levels.sequence[levels.current];
-                    entities[puzzleId].puzzle.init = true;
-                    let state = entities.level.state;
-                    state.updates = [puzzleId];
-
+                    swipedLeft = true;
+                    swipeWait = 750;
                 // check for game over based on no clickables left
                 } else if (!entity.puzzle.grid.some((e, i) => [
                         'xsquare',

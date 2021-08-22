@@ -1,8 +1,8 @@
 {
   "x": 0,
   "y": 0,
-  "deltaX": 0,
-  "deltaY": 0,
+  "downX": 0,
+  "downY": 0,
   "justDown": false,
   "justUp": false,
   "isDown": false
