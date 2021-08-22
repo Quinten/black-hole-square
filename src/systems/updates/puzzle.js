@@ -30,9 +30,13 @@ let swipedRight = false;
 let swipedLeft = false;
 let swipeWait = 0;
 
+let solution = [];
+
 let update = (entities, entity, time, delta) => {
     if (entity.puzzle.init === true) {
         entity.puzzle.init = false;
+        solution= [];
+        entities.tapstext.text.text = '' + entity.puzzle.taps;
         let state = entities.level.state;
         state.draws = [];
         entity.puzzle.grid.forEach((p, i) => {
@@ -59,7 +63,7 @@ let update = (entities, entity, time, delta) => {
             state.draws.push(topid);
             state.updates.push(topid);
         });
-        console.log(entities);
+        //console.log(entities);
     }
     let game = entities.game;
     if (game.pointer.isDown === true) {
@@ -84,17 +88,19 @@ let update = (entities, entity, time, delta) => {
                 Math.abs(homeX - game.canvas.oX)
                 < 1 / entities.game.canvas.zoom
             ) {
-                swipedLeft = false;
-                swipedRight = false;
                 let levels = entities.game.levels;
-                levels.current = (levels.current + dir
-                    + levels.sequence.length)
-                    % levels.sequence.length;
+                if (swipedLeft || solution.length === 0) {
+                    levels.current = (levels.current + dir
+                        + levels.sequence.length)
+                        % levels.sequence.length;
+                    }
                 let puzzleId = levels.sequence[levels.current];
                 entities[puzzleId].puzzle.init = true;
                 let state = entities.level.state;
                 state.updates = [puzzleId];
                 game.canvas.oX = game.canvas.oX + game.canvas.gW * 2 * dir;
+                swipedLeft = false;
+                swipedRight = false;
             }
             return;
         } else {
@@ -128,28 +134,28 @@ let update = (entities, entity, time, delta) => {
         //console.log('klik', i);
         let moves = {
             arrowup: _ => {
-                shiftPieces(
+                return shiftPieces(
                     -6,
                     35,
                     0
                 );
             },
             arrowright: _ => {
-                shiftPieces(
+                return shiftPieces(
                     1,
                     i + (5 - (i % 6)),
                     i - (i % 6)
                 );
             },
             arrowdown: _ => {
-                shiftPieces(
+                return shiftPieces(
                     6,
                     35,
                     0
                 );
             },
             arrowleft: _ => {
-                shiftPieces(
+                return shiftPieces(
                     -1,
                     i + (5 - (i % 6)),
                     i - (i % 6)
@@ -160,6 +166,7 @@ let update = (entities, entity, time, delta) => {
                 // TODO proper disappear animation
                 // TODO store for undo
                 delete entities['piece' + i].xsquare;
+                return true;
             }
         };
         let shiftPieces = (search, max, min) => {
@@ -197,7 +204,7 @@ let update = (entities, entity, time, delta) => {
                 }
             }
             if (changes.length < 1) {
-                return;
+                return false;
             }
             //console.log(changes);
             let firstId = changes.shift();
@@ -229,11 +236,16 @@ let update = (entities, entity, time, delta) => {
                 delete entities[firstId][prop];
             });
             */
+            return true;
         };
         let clicked = entities['piece' + i];
         Object.keys(moves).forEach(move => {
             if (clicked[move]) {
-                moves[move]();
+                if (moves[move]()) {
+                    solution.push(i);
+                }
+                let tapsLeft = entity.puzzle.taps - solution.length;
+                entities.tapstext.text.text = '' + tapsLeft;
 
                 // check puzzle complete
                 if (!entity.puzzle.grid.some((e, i) => [
@@ -247,6 +259,10 @@ let update = (entities, entity, time, delta) => {
                 )) {
                     swipedLeft = true;
                     swipeWait = 750;
+                // check game over based on no taps left
+                } else if (tapsLeft <= 0) {
+                    swipedRight = true;
+                    swipeWait = 750;
                 // check for game over based on no clickables left
                 } else if (!entity.puzzle.grid.some((e, i) => [
                         'xsquare',
@@ -257,11 +273,15 @@ let update = (entities, entity, time, delta) => {
                     ].some(prop => entities['piece' + i][prop] !== undefined)
                 )) {
                     //console.log('No clickables left, but blank squares left!');
+                    swipedRight = true;
+                    swipeWait = 750;
+                    /*
                     let levels = entities.game.levels;
                     let puzzleId = levels.sequence[levels.current];
                     entities[puzzleId].puzzle.init = true;
                     let state = entities.level.state;
                     state.updates = [puzzleId];
+                    */
                 }
             }
         });

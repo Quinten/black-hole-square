@@ -50,7 +50,8 @@
         0, 0, 0, 1, 0, 0,
         0, 0, 0, 0, 0, 0
       ],
-      "init": true
+      "init": true,
+      "taps": 6
     }
   },
   "learnmoves": {
@@ -63,7 +64,8 @@
         0, 0, 1, 0, 0, 0,
         0, 0, 0, 0, 0, 0
       ],
-      "init": true
+      "init": true,
+      "taps": 5
     }
   },
   "learnarrows": {
@@ -76,7 +78,8 @@
         0, 1, 0, 0, 7, 0,
         0, 0, 0, 0, 0, 0
       ],
-      "init": true
+      "init": true,
+      "taps": 6
     }
   },
   "learnpush": {
@@ -89,7 +92,8 @@
         0, 1, 0, 0, 4, 0,
         0, 0, 0, 0, 0, 0
       ],
-      "init": true
+      "init": true,
+      "taps": 6
     }
   },
   "groundzero": {
@@ -102,7 +106,8 @@
         0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0
       ],
-      "init": true
+      "init": true,
+      "taps": 2
     }
   },
   "breakflow": {
@@ -115,7 +120,8 @@
         0, 0, 1, 0, 0, 0,
         0, 0, 0, 0, 0, 0
       ],
-      "init": true
+      "init": true,
+      "taps": 5
     }
   },
   "timebreak": {
@@ -128,7 +134,8 @@
         0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0
       ],
-      "init": true
+      "init": true,
+      "taps": 7
     }
   },
   "makerows": {
@@ -142,7 +149,7 @@
         0, 0, 0, 0, 0, 0
       ],
       "init": true,
-      "moves": 7
+      "taps": 7
     }
   },
   "xintohole": {
@@ -156,7 +163,7 @@
         0, 0, 0, 0, 0, 0
       ],
       "init": true,
-      "moves": 8
+      "taps": 8
     }
   },
   "movex": {
@@ -170,7 +177,7 @@
         0, 0, 4, 0, 0, 0
       ],
       "init": true,
-      "moves": 42
+      "taps": 16
     }
   },
   "level": {
@@ -181,8 +188,13 @@
   },
   "controls": {
     "state": {
-      "draws": ["bgcut", "bgout", "tunnel", "resetbutton"],
-      "updates": ["resetbutton"]
+      "draws": [
+        "bgcut",
+        "bgout",
+        "tunnel",
+        "tapstext"
+      ],
+      "updates": []
     }
   },
   "resetbutton": {
@@ -192,6 +204,16 @@
       "origin": "canvas"
     },
     "resetbutton": {}
+  },
+  "tapstext": {
+    "position": {
+      "x": 24,
+      "y": 72,
+      "origin": "game"
+    },
+    "text": {
+      "text": ""
+    }
   },
   "bgcut": {
     "position": {
