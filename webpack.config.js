@@ -17,7 +17,8 @@ module.exports = (env, argv) => {
     let webpackConfig = {
 
         entry: {
-            'index': './src/index.js'
+            'index': './src/index.js',
+            'sw': './src/sw.js'
         },
 
         output: {
@@ -76,7 +77,6 @@ module.exports = (env, argv) => {
                 new JsonMinimizerPlugin(),
             ]
         };
-        // TODO: add service worker here
     }
 
     return webpackConfig;
