@@ -1,3 +1,6 @@
+let ctx = undefined;
+let noteNodes = undefined;
+
 let playSong = (options = {}) => {
 
     /*
@@ -53,31 +56,33 @@ let playSong = (options = {}) => {
     let mLooped = !melody;
     let bLooped = !bass;
 
-    let ctx = new AudioContext();
+    if (ctx === undefined) {
+        ctx = new AudioContext();
 
-    let biquadFilter = ctx.createBiquadFilter();
-    biquadFilter.connect(ctx.destination);
-    biquadFilter.type = 'lowpass';
-    biquadFilter.frequency.value = 920;
-    //biquadFilter.gain.value = 25;
+        let biquadFilter = ctx.createBiquadFilter();
+        biquadFilter.connect(ctx.destination);
+        biquadFilter.type = 'lowpass';
+        biquadFilter.frequency.value = 920;
+        //biquadFilter.gain.value = 25;
 
-    let musicVolume = ctx.createGain();
-    musicVolume.connect(biquadFilter);
-    musicVolume.gain.value = 0.5;
+        let musicVolume = ctx.createGain();
+        musicVolume.connect(biquadFilter);
+        musicVolume.gain.value = 0.5;
 
-    let delayEffect = ctx.createDelay(60 / bpm);
-    delayEffect.delayTime.value = 60 / bpm;
-    let delayVolume = ctx.createGain();
-    delayVolume.gain.value = 0.15;
-    delayVolume.connect(musicVolume);
-    delayEffect.connect(delayVolume);
+        let delayEffect = ctx.createDelay(60 / bpm);
+        delayEffect.delayTime.value = 60 / bpm;
+        let delayVolume = ctx.createGain();
+        delayVolume.gain.value = 0.15;
+        delayVolume.connect(musicVolume);
+        delayEffect.connect(delayVolume);
 
-    let noteNodes = [0, 1, 2, 3, 4, 5, 6, 7].map(() => {
-        let node = ctx.createGain();
-        node.connect(musicVolume);
-        node.connect(delayEffect);
-        return node;
-    });
+        noteNodes = [0, 1, 2, 3, 4, 5, 6, 7].map(() => {
+            let node = ctx.createGain();
+            node.connect(musicVolume);
+            node.connect(delayEffect);
+            return node;
+        });
+    }
 
     let index = 0;
 
@@ -96,7 +101,7 @@ let playSong = (options = {}) => {
             return;
         }
         if (stopTime !== 0 && ctx.currentTime > stopTime) {
-            ctx.close();
+            //ctx.close();
             return;
         }
         if ((!mLooped && ctx.currentTime > nextNoteTick + 1) || (!bLooped && ctx.currentTime > nextPluckTick + 1)) {
