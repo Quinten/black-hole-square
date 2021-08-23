@@ -66,7 +66,7 @@ let update = (entities, entity, time, delta) => {
         //console.log(entities);
     }
     let game = entities.game;
-    if (game.pointer.isDown === true) {
+    if (game.pointer.isDown === true && solution.length < entity.puzzle.taps) {
         game.canvas.oX = game.canvas.gX
             + (game.pointer.x - game.pointer.downX);
         game.canvas.oY = game.canvas.gY;
@@ -125,6 +125,9 @@ let update = (entities, entity, time, delta) => {
             - 16 - (entities.game.canvas.gW - entities.game.canvas.tW) / 2;
         let y = entities.game.pointer.y
             - 62 - (entities.game.canvas.gH - entities.game.canvas.tH) / 2;
+        if (solution.length >= entity.puzzle.taps) {
+            return;
+        }
         if (x < 0 || x > 288 || y < 0 || y > 288) {
             return;
         }
