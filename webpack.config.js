@@ -35,19 +35,6 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new HtmlWebpackPlugin({
-                ...manifest,
-                chunks : ['index'],
-                template: './src/index.html',
-                filename: 'index.html'
-            }),
-            /*
-            new InlineSourceWebpackPlugin({
-                compress: true,
-                rootpath: './src',
-                noAssetMatch: 'warn'
-            }),
-            */
             new CopyPlugin({
                 patterns: [
                     {
@@ -63,13 +50,21 @@ module.exports = (env, argv) => {
         ],
 
         devServer: {
-            contentBase: "./public",
             host: "0.0.0.0",
             port: 3000
         }
     }
 
-    if (!devMode) {
+    if (devMode) {
+        webpackConfig.plugins.push(
+            new HtmlWebpackPlugin({
+                ...manifest,
+                chunks : ['index'],
+                template: './src/index.html',
+                filename: 'index.html'
+            })
+        );
+    } else {
         webpackConfig.optimization = {
             minimize: true,
             minimizer: [
@@ -77,6 +72,19 @@ module.exports = (env, argv) => {
                 new JsonMinimizerPlugin(),
             ]
         };
+        webpackConfig.plugins.push(
+            new HtmlWebpackPlugin({
+                ...manifest,
+                chunks : [],
+                template: './src/index.html',
+                filename: 'index.html'
+            }),
+            new InlineSourceWebpackPlugin({
+                compress: true,
+                rootpath: './src',
+                noAssetMatch: 'warn'
+            })
+        );
     }
 
     return webpackConfig;
