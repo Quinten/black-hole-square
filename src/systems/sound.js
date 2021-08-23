@@ -56,7 +56,7 @@ let playSong = (options = {}) => {
     let mLooped = !melody;
     let bLooped = !bass;
 
-    if (ctx === undefined || ctx.state === 'closed') {
+    if (ctx === undefined || ctx.state !== 'running') {
         ctx = new AudioContext();
 
         let biquadFilter = ctx.createBiquadFilter();
