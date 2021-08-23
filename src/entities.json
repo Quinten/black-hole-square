@@ -32,10 +32,12 @@
         "learnmoves",
         "makerows",
         "firsttest",
+        "backtoback",
         "breakflow",
         "timebreak",
         "xintohole",
-        "movex"
+        "movex",
+        "shoveit"
       ],
       "current": 0
     }
@@ -178,6 +180,34 @@
       ],
       "init": true,
       "taps": 16
+    }
+  },
+  "backtoback": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 6, 0, 0, 0,
+        1, 5, 0, 0, 0, 0,
+        0, 0, 0, 0, 7, 1,
+        0, 0, 0, 4, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true,
+      "taps": 10
+    }
+  },
+  "shoveit": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        5, 5, 5, 3, 1, 0,
+        0, 0, 3, 2, 7, 0,
+        0, 0, 4, 4, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true,
+      "taps": 14
     }
   },
   "level": {
