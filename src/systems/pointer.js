@@ -1,7 +1,5 @@
 import soundSystem from './sound.js';
 
-let audioStarted = false;
-
 let add = (game, canvas) => {
     let pointer = game.pointer;
     let viewportOffset;
@@ -52,10 +50,7 @@ let add = (game, canvas) => {
         pointerY = (e.changedTouches[0].clientY - top) / adjust;
         handlePointerDown(pointerX, pointerY);
         // get around ios sound limitations
-        if (!audioStarted) {
-            soundSystem.playSong({melody: ['8-']});
-            audioStarted = true;
-        }
+        soundSystem.playSong({melody: ['8-']});
     });
 
     canvas.addEventListener('mousemove', e => {
