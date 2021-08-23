@@ -1,4 +1,5 @@
 import entitySystem from '../entity.js';
+import soundSystem from '../sound.js';
 
 /*
  * keys
@@ -169,7 +170,7 @@ let update = (entities, entity, time, delta) => {
                 // TODO proper disappear animation
                 // TODO store for undo
                 delete entities['piece' + i].xsquare;
-                return true;
+                return 1;
             }
         };
         let shiftPieces = (search, max, min) => {
@@ -207,7 +208,7 @@ let update = (entities, entity, time, delta) => {
                 }
             }
             if (changes.length < 1) {
-                return false;
+                return 0;
             }
             //console.log(changes);
             let firstId = changes.shift();
@@ -239,13 +240,33 @@ let update = (entities, entity, time, delta) => {
                 delete entities[firstId][prop];
             });
             */
-            return true;
+            return changes.length;
         };
         let clicked = entities['piece' + i];
         Object.keys(moves).forEach(move => {
             if (clicked[move]) {
-                if (moves[move]()) {
+                let nChanges = moves[move]();
+                if (nChanges > 0) {
                     solution.push(i);
+                    let tunes = {
+                        xsquare: '2C4',
+                        arrowup: '2e4',
+                        arrowright: '2a4',
+                        arrowdown: '2D4',
+                        arrowleft: '2G4'
+                    };
+                    let melody = [tunes[move]];
+                    soundSystem.playSong({melody});
+                } else {
+                    let tunes = {
+                        xsquare: '1C4',
+                        arrowup: '1e4',
+                        arrowright: '1a4',
+                        arrowdown: '1D4',
+                        arrowleft: '1G4'
+                    };
+                    let melody = [tunes[move]];
+                    soundSystem.playSong({melody});
                 }
                 let tapsLeft = entity.puzzle.taps - solution.length;
                 entities.tapstext.text.text = '' + tapsLeft;
@@ -262,10 +283,14 @@ let update = (entities, entity, time, delta) => {
                 )) {
                     swipedLeft = true;
                     swipeWait = 750;
+                    let melody = ['4-', '2C4', '2D4', '4G4'];
+                    soundSystem.playSong({melody});
                 // check game over based on no taps left
                 } else if (tapsLeft <= 0) {
                     swipedRight = true;
                     swipeWait = 750;
+                    let bass = ['4-', '2e3', '6a2'];
+                    soundSystem.playSong({bass});
                 // check for game over based on no clickables left
                 } else if (!entity.puzzle.grid.some((e, i) => [
                         'xsquare',
@@ -285,6 +310,8 @@ let update = (entities, entity, time, delta) => {
                     let state = entities.level.state;
                     state.updates = [puzzleId];
                     */
+                    let bass = ['4-', '4e3', '6a2'];
+                    soundSystem.playSong({bass});
                 }
             }
         });
