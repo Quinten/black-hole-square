@@ -38,7 +38,8 @@
         "xintohole",
         "movex",
         "shoveit",
-        "firstneutron"
+        "firstneutron",
+        "circularneutron"
       ],
       "current": 0
     }
@@ -222,7 +223,21 @@
         0, 0, 0, 0, 0, 0
       ],
       "init": true,
-      "taps": 14
+      "taps": 6
+    }
+  },
+  "circularneutron": {
+    "puzzle": {
+      "grid": [
+        0, 0, 6, 0, 0, 0,
+        0, 0, 6, 8, 0, 0,
+        0, 0, 0, 0, 3, 7,
+        5, 2, 0, 0, 0, 0,
+        0, 0, 0, 8, 0, 0,
+        0, 0, 0, 4, 0, 0
+      ],
+      "init": true,
+      "taps": 16
     }
   },
   "level": {
