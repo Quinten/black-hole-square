@@ -27,7 +27,8 @@ let update = (entities, entity, time, delta) => {
                     'arrowup',
                     'arrowright',
                     'arrowdown',
-                    'arrowleft'
+                    'arrowleft',
+                    'neutronstar'
                 ].forEach(prop => {
                     delete entity[prop];
                 });

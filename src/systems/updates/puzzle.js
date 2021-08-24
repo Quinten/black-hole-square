@@ -12,7 +12,8 @@ import soundSystem from '../sound.js';
  * 5 = arrow right (pushes others right on click)
  * 6 = arrow down (pushes others down on click)
  * 7 = arrow left (pushes others left on click)
- * 8 = worm hole -if time left in scope-
+ * 8 = neutronstar (pushable, but truns into blackhole, when clicked)
+ * 9 = worm hole -if time left in scope-
  */
 
 let pieces = [
@@ -24,7 +25,7 @@ let pieces = [
     ['position', 'size', 'home', 'arrowright'],
     ['position', 'size', 'home', 'arrowdown'],
     ['position', 'size', 'home', 'arrowleft'],
-    ['position', 'size', 'home', 'fillrect']
+    ['position', 'size', 'home', 'neutronstar']
 ];
 
 let swipedRight = false;
@@ -171,6 +172,16 @@ let update = (entities, entity, time, delta) => {
                 // TODO store for undo
                 delete entities['piece' + i].xsquare;
                 return 1;
+            },
+            neutronstar: _ => {
+                // remove square
+                // TODO proper disappear animation
+                // TODO store for undo
+                delete entities['piece' + i].neutronstar;
+                entities['piece' + i].blackhole = {};
+                entities['top' + i].neutronstar = {};
+                entities['top' + i].home.suck = true;
+                return 1;
             }
         };
         let shiftPieces = (search, max, min) => {
@@ -187,7 +198,8 @@ let update = (entities, entity, time, delta) => {
                     'arrowup',
                     'arrowright',
                     'arrowdown',
-                    'arrowleft'
+                    'arrowleft',
+                    'neutronstar'
                 ].some(prop => next[prop] !== undefined)) {
                     changes.unshift('top' + j);
                     changes.push('piece' + j);
@@ -228,18 +240,6 @@ let update = (entities, entity, time, delta) => {
             // TODO store for undo
             entities[firstId].home = firstHome;
             entities[firstId].home.suck = true;
-/*
-            [
-                'blanksquare',
-                'xsquare',
-                'arrowup',
-                'arrowright',
-                'arrowdown',
-                'arrowleft'
-            ].forEach(prop => {
-                delete entities[firstId][prop];
-            });
-            */
             return changes.length;
         };
         let clicked = entities['piece' + i];
@@ -249,6 +249,7 @@ let update = (entities, entity, time, delta) => {
                 if (nChanges > 0) {
                     solution.push(i);
                     let tunes = {
+                        neutronstar: '2b4',
                         xsquare: '2C4',
                         arrowup: '2e4',
                         arrowright: '2a4',
@@ -259,6 +260,7 @@ let update = (entities, entity, time, delta) => {
                     soundSystem.playSong({melody});
                 } else {
                     let tunes = {
+                        neutronstar: '1b4',
                         xsquare: '1C4',
                         arrowup: '1e4',
                         arrowright: '1a4',
@@ -278,7 +280,8 @@ let update = (entities, entity, time, delta) => {
                         'arrowup',
                         'arrowright',
                         'arrowdown',
-                        'arrowleft'
+                        'arrowleft',
+                        'neutronstar'
                     ].some(prop => entities['piece' + i][prop] !== undefined)
                 )) {
                     swipedLeft = true;
@@ -297,7 +300,8 @@ let update = (entities, entity, time, delta) => {
                         'arrowup',
                         'arrowright',
                         'arrowdown',
-                        'arrowleft'
+                        'arrowleft',
+                        'neutronstar'
                     ].some(prop => entities['piece' + i][prop] !== undefined)
                 )) {
                     //console.log('No clickables left, but blank squares left!');

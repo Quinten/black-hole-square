@@ -37,7 +37,8 @@
         "timebreak",
         "xintohole",
         "movex",
-        "shoveit"
+        "shoveit",
+        "firstneutron"
       ],
       "current": 0
     }
@@ -204,6 +205,20 @@
         0, 0, 3, 2, 7, 0,
         0, 0, 4, 4, 0, 0,
         0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true,
+      "taps": 14
+    }
+  },
+  "firstneutron": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 5, 0, 0, 0,
+        0, 0, 0, 8, 0, 0,
+        0, 0, 5, 0, 0, 0,
+        0, 0, 0, 4, 0, 0,
         0, 0, 0, 0, 0, 0
       ],
       "init": true,
