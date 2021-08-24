@@ -65,6 +65,29 @@ let update = (entities, entity, time, delta) => {
             state.draws.push(topid);
             state.updates.push(topid);
         });
+        if (entity.puzzle.text !== undefined) {
+            entity.puzzle.text.forEach((t, i, a) => {
+                let id = 'text' + i;
+                let entity = entitySystem.add(
+                    entities,
+                    id,
+                    'position',
+                    'text'
+                );
+                entity.position.x = 160;
+                entity.position.y = 208 - a.length * 12 + i * 24;
+                entity.text.text = t;
+                entity.text.align = 'center';
+                state.draws.push(id);
+                state.updates.push(id);
+                let topid = 'top' + i;
+                let topentity = entitySystem.add(
+                    entities,
+                    topid,
+                    ...pieces[0]
+                );
+            });
+        }
         //console.log(entities);
     }
     let game = entities.game;
@@ -92,10 +115,16 @@ let update = (entities, entity, time, delta) => {
             ) {
                 let levels = entities.game.levels;
                 if (swipedLeft || solution.length === 0) {
+                    /*
                     levels.current = (levels.current + dir
                         + levels.sequence.length)
                         % levels.sequence.length;
-                    }
+                    */
+                    levels.current = Math.min(
+                        Math.max(levels.current + dir, 0),
+                        levels.sequence.length - 1
+                    );
+                }
                 let puzzleId = levels.sequence[levels.current];
                 entities[puzzleId].puzzle.init = true;
                 let state = entities.level.state;

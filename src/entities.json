@@ -9,7 +9,7 @@
       "gH": 416,
       "oX": 0,
       "oY": 48,
-      "gX": 0,
+      "gX": 2560,
       "gY": 48,
       "zoom": 1,
       "parentSelector": "body"
@@ -26,12 +26,15 @@
     },
     "levels": {
       "sequence": [
+        "idiotscreen",
+        "startscreen",
         "groundzero",
         "learnarrows",
         "learnpush",
         "learnmoves",
         "makerows",
         "firsttest",
+        "ad",
         "backtoback",
         "breakflow",
         "timebreak",
@@ -39,9 +42,81 @@
         "movex",
         "shoveit",
         "firstneutron",
-        "circularneutron"
+        "circularneutron",
+        "end",
+        "orisit"
       ],
-      "current": 0
+      "current": 1
+    }
+  },
+  "idiotscreen": {
+    "puzzle": {
+      "grid": [],
+      "init": true,
+      "taps": "",
+      "text": [
+        "You swiped right!",
+        "",
+        "Swipe left, please."
+      ]
+    }
+  },
+  "startscreen": {
+    "puzzle": {
+      "grid": [],
+      "init": true,
+      "taps": "",
+      "text": [
+        "Welcome to Black Hole Square!",
+        "Clean up all the other squares",
+        "in the universe! Just tap them",
+        "and see what happens.",
+        "",
+        "Swipe right to reset the level",
+        "or go back to the old ones.",
+        "Swipe left to skip a level.",
+        "",
+        "Swipe left to get started!"
+      ]
+    }
+  },
+  "ad": {
+    "puzzle": {
+      "grid": [],
+      "init": true,
+      "taps": "",
+      "text": [
+        "Did you know Coil subscribers",
+        "get 20% bonus levels?",
+        "",
+        "They also get stars for every",
+        "puzzle solution they find and",
+        "they can tap them to watch a",
+        "replay of their best games.",
+        "",
+        "It's a whole new meta game!!!",
+        "(Swipe left if you don't care)"
+      ]
+    }
+  },
+  "end": {
+    "puzzle": {
+      "grid": [],
+      "init": true,
+      "taps": "",
+      "text": [
+        "The edge of the universe..."
+      ]
+    }
+  },
+  "orisit": {
+    "puzzle": {
+      "grid": [],
+      "init": true,
+      "taps": "",
+      "text": [
+        "Or is it?"
+      ]
     }
   },
   "firsttest": {
@@ -243,7 +318,7 @@
   "level": {
     "state": {
       "draws": [],
-      "updates": ["groundzero"]
+      "updates": ["startscreen"]
     }
   },
   "controls": {
