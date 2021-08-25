@@ -121,7 +121,7 @@ let playSong = (options = {}) => {
             nextNoteTick = nextPluckTick = ctx.currentTime;
         }
         while (!mLooped && nextNoteTick < ctx.currentTime + anticipate) {
-            let noteLength = playNote(noteNodes[index], melody[nextNote], nextNoteTick, bpm, 'sine');
+            let noteLength = playNote(noteNodes[index], melody[nextNote], nextNoteTick, bpm, 'triangle');
             index = (index + 1) % noteNodes.length;
             nextNote = (nextNote + 1) % melody.length;
             nextNoteTick += noteLength;
