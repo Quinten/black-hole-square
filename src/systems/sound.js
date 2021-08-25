@@ -82,8 +82,12 @@ let playSong = (options = {}) => {
 
         let delayEffect = ctx.createDelay(60 / bpm);
         delayEffect.delayTime.value = 240 / bpm;
+        let feedback = ctx.createGain();
+        feedback.gain.value = 0.3;
+        delayEffect.connect(feedback);
+        feedback.connect(delayEffect);
         let delayVolume = ctx.createGain();
-        delayVolume.gain.value = 0.15;
+        delayVolume.gain.value = 0.4;
         delayVolume.connect(musicVolume);
         delayEffect.connect(delayVolume);
 
