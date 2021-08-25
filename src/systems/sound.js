@@ -58,6 +58,17 @@ let playSong = (options = {}) => {
 
     if (ctx === undefined || ctx.state !== 'running') {
         ctx = new AudioContext();
+        if (/(iPhone|iPad)/i.test(navigator.userAgent) &&
+            ctx.sampleRate !== 48000) {
+            let buffer = ctx.createBuffer(1, 1, 48000);
+            let dummy = ctx.createBufferSource();
+            dummy.buffer = buffer;
+            dummy.connect(ctx.destination);
+            dummy.start(0);
+            dummy.disconnect();
+            ctx.close() // dispose old context
+            ctx = new AudioContext();
+        }
 
         let biquadFilter = ctx.createBiquadFilter();
         biquadFilter.connect(ctx.destination);
