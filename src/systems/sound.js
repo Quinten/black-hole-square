@@ -11,7 +11,7 @@ let playSong = (options = {}) => {
 
     let notes = 'AbBCdDeEFgGa';
 
-    let playNote = (node, note, start, bpm = 120, shape = 'square') => {
+    let playNote = (node, note, start, bpm = 120, shape = 'triangle') => {
 
         if (node.context.state === 'closed') {
             return;
@@ -51,7 +51,7 @@ let playSong = (options = {}) => {
         return length;
     };
 
-    let {melody, bass, bpm = 240, loop = false} = options;
+    let {melody, bass, bpm = 256, loop = false} = options;
 
     let mLooped = !melody;
     let bLooped = !bass;
@@ -81,7 +81,7 @@ let playSong = (options = {}) => {
         musicVolume.gain.value = 3;
 
         let delayEffect = ctx.createDelay(60 / bpm);
-        delayEffect.delayTime.value = 60 / bpm;
+        delayEffect.delayTime.value = 240 / bpm;
         let delayVolume = ctx.createGain();
         delayVolume.gain.value = 0.15;
         delayVolume.connect(musicVolume);
@@ -121,7 +121,7 @@ let playSong = (options = {}) => {
             nextNoteTick = nextPluckTick = ctx.currentTime;
         }
         while (!mLooped && nextNoteTick < ctx.currentTime + anticipate) {
-            let noteLength = playNote(noteNodes[index], melody[nextNote], nextNoteTick, bpm, 'triangle');
+            let noteLength = playNote(noteNodes[index], melody[nextNote], nextNoteTick, bpm);
             index = (index + 1) % noteNodes.length;
             nextNote = (nextNote + 1) % melody.length;
             nextNoteTick += noteLength;
@@ -133,7 +133,7 @@ let playSong = (options = {}) => {
             stopTime = (stopTime < nextNoteTick + anticipate) ? nextNoteTick + anticipate : stopTime;
         }
         while (!bLooped && nextPluckTick < ctx.currentTime + anticipate) {
-            let pluckLength = playNote(noteNodes[index], bass[nextPluck], nextPluckTick, bpm, 'triangle');
+            let pluckLength = playNote(noteNodes[index], bass[nextPluck], nextPluckTick, bpm);
             index = (index + 1) % noteNodes.length;
             nextPluck = (nextPluck + 1) % bass.length;
             nextPluckTick += pluckLength;

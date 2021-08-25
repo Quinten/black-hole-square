@@ -278,23 +278,23 @@ let update = (entities, entity, time, delta) => {
                 if (nChanges > 0) {
                     solution.push(i);
                     let tunes = {
-                        neutronstar: '2b4',
-                        xsquare: '2C4',
-                        arrowup: '2e4',
-                        arrowright: '2a4',
-                        arrowdown: '2D4',
-                        arrowleft: '2G4'
+                        neutronstar: '2b3',
+                        xsquare: '2C3',
+                        arrowup: '2e3',
+                        arrowright: '2a3',
+                        arrowdown: '2D3',
+                        arrowleft: '2G3'
                     };
                     let melody = [tunes[move]];
                     soundSystem.playSong({melody});
                 } else {
                     let tunes = {
-                        neutronstar: '1b4',
-                        xsquare: '1C4',
-                        arrowup: '1e4',
-                        arrowright: '1a4',
-                        arrowdown: '1D4',
-                        arrowleft: '1G4'
+                        neutronstar: '1b3',
+                        xsquare: '1C3',
+                        arrowup: '1e3',
+                        arrowright: '1a3',
+                        arrowdown: '1D3',
+                        arrowleft: '1G3'
                     };
                     let melody = [tunes[move]];
                     soundSystem.playSong({melody});
@@ -315,7 +315,7 @@ let update = (entities, entity, time, delta) => {
                 )) {
                     swipedLeft = true;
                     swipeWait = 750;
-                    let melody = ['4-', '2C4', '2D4', '4G4'];
+                    let melody = ['4-', '2C3', '2D3', '4G3'];
                     soundSystem.playSong({melody});
                 // check game over based on no taps left
                 } else if (tapsLeft <= 0) {
