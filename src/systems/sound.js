@@ -67,7 +67,7 @@ let playSong = (options = {}) => {
 
         let musicVolume = ctx.createGain();
         musicVolume.connect(biquadFilter);
-        musicVolume.gain.value = 0.5;
+        musicVolume.gain.value = 3;
 
         let delayEffect = ctx.createDelay(60 / bpm);
         delayEffect.delayTime.value = 60 / bpm;
