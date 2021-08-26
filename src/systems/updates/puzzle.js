@@ -1,5 +1,6 @@
 import entitySystem from '../entity.js';
 import soundSystem from '../sound.js';
+import dataSystem from '../data.js';
 
 /*
  * keys
@@ -33,6 +34,8 @@ let swipedLeft = false;
 let swipeWait = 0;
 
 let solution = [];
+
+let solved = dataSystem.load('solved') || [];
 
 let update = (entities, entity, time, delta) => {
     if (entity.puzzle.init === true) {
@@ -334,6 +337,9 @@ let update = (entities, entity, time, delta) => {
                     let melody = ['4-', '2C3', '2D3', '4G3'];
                     soundSystem.playSong({melody});
                     entities.feedback.text.text = 'Nailed it!';
+                    let levels = entities.game.levels;
+                    solved.push(levels.sequence[levels.current]);
+                    dataSystem.save('solved', solved);
                 // check game over based on no taps left
                 } else if (tapsLeft <= 0) {
                     swipedRight = true;

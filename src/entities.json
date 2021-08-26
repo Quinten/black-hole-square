@@ -335,7 +335,8 @@
         "bgout",
         "feedback",
         "tunnel",
-        "tapstext"
+        "tapstext",
+        "progress"
       ],
       "updates": []
     }
@@ -394,6 +395,15 @@
   "tunnel": {
     "tunnel": {
       "fill": "#16272C"
+    }
+  },
+  "progress": {
+    "position": {
+      "x": 0,
+      "y": 160,
+      "origin": "center"
+    },
+    "progress": {
     }
   }
 }
