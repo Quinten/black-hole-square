@@ -41,8 +41,9 @@ let playSong = (options = {}) => {
         o.type = shape;
 
         node.gain.setValueAtTime(0, start);
-        node.gain.linearRampToValueAtTime(0.2, start + length * 0.03);
-        node.gain.setValueAtTime(0.2, start + length * 0.3);
+        node.gain.linearRampToValueAtTime(0.60, start + length * 0.03);
+        node.gain.setValueAtTime(0.56, start + length * 0.24);
+        node.gain.setValueAtTime(0.55, start + length * 0.3);
         node.gain.linearRampToValueAtTime(0, start + length * 1.5);
 
         o.start(start);
@@ -78,16 +79,16 @@ let playSong = (options = {}) => {
 
         let musicVolume = ctx.createGain();
         musicVolume.connect(biquadFilter);
-        musicVolume.gain.value = 3;
+        musicVolume.gain.value = 0.8;
 
         let delayEffect = ctx.createDelay(60 / bpm);
-        delayEffect.delayTime.value = 240 / bpm;
+        delayEffect.delayTime.value = 60 / bpm;
         let feedback = ctx.createGain();
-        feedback.gain.value = 0.3;
+        feedback.gain.value = 0.25;
         delayEffect.connect(feedback);
         feedback.connect(delayEffect);
         let delayVolume = ctx.createGain();
-        delayVolume.gain.value = 0.4;
+        delayVolume.gain.value = 0.5;
         delayVolume.connect(musicVolume);
         delayEffect.connect(delayVolume);
 
