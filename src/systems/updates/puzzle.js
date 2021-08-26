@@ -91,10 +91,26 @@ let update = (entities, entity, time, delta) => {
         //console.log(entities);
     }
     let game = entities.game;
-    if (game.pointer.isDown === true && solution.length < entity.puzzle.taps) {
-        game.canvas.oX = game.canvas.gX
-            + (game.pointer.x - game.pointer.downX);
+    if (game.pointer.isDown === true && (solution.length < entity.puzzle.taps || entity.puzzle.text)) {
+        let swipeX = game.pointer.x - game.pointer.downX;
+        game.canvas.oX = game.canvas.gX + swipeX;
         game.canvas.oY = game.canvas.gY;
+        if (swipeX > 48) {
+            if (entity.puzzle.lT) {
+                entities.feedback.text.text = entity.puzzle.lT;
+            } else if (solution.length === 0) {
+                entities.feedback.text.text = 'Back';
+            } else {
+                entities.feedback.text.text = 'Reset';
+            }
+        }
+        if (swipeX < -48) {
+            if (entity.puzzle.rT) {
+                entities.feedback.text.text = entity.puzzle.rT;
+            } else {
+                entities.feedback.text.text = 'Skip';
+            }
+        }
     } else {
         let homeX = game.canvas.gX;
         let dir = 1;
@@ -317,12 +333,14 @@ let update = (entities, entity, time, delta) => {
                     swipeWait = 750;
                     let melody = ['4-', '2C3', '2D3', '4G3'];
                     soundSystem.playSong({melody});
+                    entities.feedback.text.text = 'Nailed it!';
                 // check game over based on no taps left
                 } else if (tapsLeft <= 0) {
                     swipedRight = true;
                     swipeWait = 750;
                     let bass = ['4-', '2e3', '6a2'];
                     soundSystem.playSong({bass});
+                    entities.feedback.text.text = 'Out of moves!';
                 // check for game over based on no clickables left
                 } else if (!entity.puzzle.grid.some((e, i) => [
                         'xsquare',
@@ -345,6 +363,7 @@ let update = (entities, entity, time, delta) => {
                     */
                     let bass = ['4-', '4e3', '6a2'];
                     soundSystem.playSong({bass});
+                    entities.feedback.text.text = 'Oops';
                 }
             }
         });

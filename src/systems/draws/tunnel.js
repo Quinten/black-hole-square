@@ -10,7 +10,7 @@ for (let i = 0; i < numQuads; i++) {
     quads.push(q);
 }
 
-let angleZ = (-0.005 + Math.random() / 100) * 2;
+let angleZ = -0.005;
 
 let quad = (ctx, x1, y1, x2, y2, x3, y3, x4, y4) => {
     ctx.beginPath();
@@ -42,12 +42,12 @@ let draw = (entities, entity, ctx) => {
             q.start = q.start + fl * 8;
             q.rotation = Math.random() * Math.PI * 2;
         }
-        //q.rotation = q.rotation + angleZ;
+        q.rotation = q.rotation + angleZ;
         let points = [
-            {x: -1, y: 80, z: q.start},
-            {x: 1, y: 80, z: q.start},
-            {x: 1, y: 80, z: Math.max(q.start - q.length, -fl + 1)},
-            {x: -1, y: 80, z: Math.max(q.start - q.length, -fl + 1)}
+            {x: -4, y: 80, z: q.start},
+            {x: 4, y: 80, z: q.start},
+            {x: 4, y: 80, z: Math.max(q.start - q.length, -fl + 1)},
+            {x: -4, y: 80, z: Math.max(q.start - q.length, -fl + 1)}
         ];
 
         let arg = [];

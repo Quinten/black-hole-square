@@ -58,7 +58,9 @@
         "You swiped right!",
         "",
         "Swipe left, please."
-      ]
+      ],
+      "lT": "Still wrong",
+      "rT": "Almost"
     }
   },
   "startscreen": {
@@ -77,7 +79,9 @@
         "Swipe left to skip a level.",
         "",
         "Swipe left to get started!"
-      ]
+      ],
+      "lT": "Wrong way",
+      "rT": "Let's go!"
     }
   },
   "ad": {
@@ -106,7 +110,8 @@
       "taps": "",
       "text": [
         "The edge of the universe..."
-      ]
+      ],
+      "rT": "Darkness"
     }
   },
   "orisit": {
@@ -116,7 +121,9 @@
       "taps": "",
       "text": [
         "Or is it?"
-      ]
+      ],
+      "lT": "Darkness",
+      "rT": "Cold"
     }
   },
   "firsttest": {
@@ -326,6 +333,7 @@
       "draws": [
         "bgcut",
         "bgout",
+        "feedback",
         "tunnel",
         "tapstext"
       ],
@@ -348,6 +356,19 @@
     },
     "text": {
       "text": ""
+    }
+  },
+  "feedback": {
+    "position": {
+      "x": 0,
+      "y": 0,
+      "origin": "center"
+    },
+    "text": {
+      "text": "",
+      "align": "center",
+      "behind": true,
+      "base": "middle"
     }
   },
   "bgcut": {
