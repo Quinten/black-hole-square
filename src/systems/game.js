@@ -29,10 +29,6 @@ let setup = (entities) => {
             canvas.height = game.canvas.h;
         }
         parent.appendChild(canvas);
-        let loader = document.querySelector('#loading');
-        if (loader !== null) {
-            loader.remove();
-        }
         if (game.pointer !== undefined) {
             pointerSystem.add(game, canvas);
         }

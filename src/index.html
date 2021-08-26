@@ -13,40 +13,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <link rel="icon" type="image/png" href="icon.png">
         <link rel="apple-touch-icon" href="icon.png">
-        <style>
-            body {
-                color: <%= htmlWebpackPlugin.options.foreground_color %>;
-                background-color: <%= htmlWebpackPlugin.options.background_color %>;
-                font-family: monospace;
-                margin: 0;
-                overflow: hidden;
-            }
-
-            html, body {
-                height: 100%;
-                position: relative;
-            }
-
-            @keyframes spin {
-                100% {
-                    transform:rotate(360deg);
-                }
-            }
-
-            #loading {
-                position: absolute;
-                width: 32px;
-                height: 32px;
-                top: 50%;
-                margin-top: -16px;
-                left: 50%;
-                margin-left: -16px;
-                border: 4px <%= htmlWebpackPlugin.options.foreground_color %> solid;
-                border-bottom: 4px transparent solid;
-                border-radius: 22px;
-                animation: spin 1s linear infinite;
-            }
-        </style>
+        <style>body{background-color:<%= htmlWebpackPlugin.options.background_color %>;margin:0;overflow: hidden;}</style>
     </head>
     <body>
         <div id="loading"></div>
