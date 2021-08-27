@@ -301,6 +301,7 @@ let update = (entities, entity, time, delta) => {
         let clicked = entities['piece' + i];
         Object.keys(moves).forEach(move => {
             if (clicked[move]) {
+                clicked.clicked = 16;
                 let nChanges = moves[move]();
                 if (nChanges > 0) {
                     solution.push(i);
