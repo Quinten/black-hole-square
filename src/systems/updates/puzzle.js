@@ -32,6 +32,7 @@ let pieces = [
 let swipedRight = false;
 let swipedLeft = false;
 let swipeWait = 0;
+let swiped = false;
 
 let solution = [];
 
@@ -94,7 +95,7 @@ let update = (entities, entity, time, delta) => {
         //console.log(entities);
     }
     let game = entities.game;
-    if (game.pointer.isDown === true && (solution.length < entity.puzzle.taps || entity.puzzle.text)) {
+    if (!swiped && game.pointer.isDown === true && (solution.length < entity.puzzle.taps || entity.puzzle.text)) {
         let swipeX = game.pointer.x - game.pointer.downX;
         game.canvas.oX = game.canvas.gX + swipeX;
         game.canvas.oY = game.canvas.gY;
@@ -153,8 +154,13 @@ let update = (entities, entity, time, delta) => {
                 swipedRight = false;
             }
             return;
-        } else {
+        } else if (swipeWait > 0) {
             swipeWait = swipeWait - delta;
+        } else if (
+            Math.abs(homeX - game.canvas.oX)
+                < 1 / entities.game.canvas.zoom
+        ) {
+            swiped = false;
         }
     }
     if (entities.game.pointer.justUp === true) {
@@ -163,12 +169,14 @@ let update = (entities, entity, time, delta) => {
             //console.log('swipe right');
             swipedRight = true;
             swipeWait = 0;
+            swiped = true;
             return;
         }
         if (swipeX < -48) {
             //console.log('swipe left');
             swipedLeft = true;
             swipeWait = 0;
+            swiped = true;
             return;
         }
         let x = entities.game.pointer.x
@@ -334,6 +342,7 @@ let update = (entities, entity, time, delta) => {
                 )) {
                     swipedLeft = true;
                     swipeWait = 750;
+                    swiped = true;
                     let melody = ['4-', '2C3', '2D3', '4G3'];
                     soundSystem.playSong({melody});
                     entities.feedback.text.text = 'Nailed it!';
@@ -344,6 +353,7 @@ let update = (entities, entity, time, delta) => {
                 } else if (tapsLeft <= 0) {
                     swipedRight = true;
                     swipeWait = 750;
+                    swiped = true;
                     let bass = ['4-', '2e3', '6a2'];
                     soundSystem.playSong({bass});
                     entities.feedback.text.text = 'Out of moves!';
@@ -360,6 +370,7 @@ let update = (entities, entity, time, delta) => {
                     //console.log('No clickables left, but blank squares left!');
                     swipedRight = true;
                     swipeWait = 750;
+                    swiped = true;
                     /*
                     let levels = entities.game.levels;
                     let puzzleId = levels.sequence[levels.current];
