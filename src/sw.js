@@ -2,7 +2,6 @@ let PRECACHE = 'black-hole-square';
 let PRECACHE_URLS = [
     './',
     'index.html',
-    'index.js',
     'icon.png',
     'manifest.json'
 ];
