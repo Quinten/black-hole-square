@@ -3,7 +3,7 @@ import dataSystem from '../data.js';
 let drawSquare = [
     (ctx, x) => [
         ctx.strokeStyle = '#4B8495',
-        ctx.strokeRect(x, 0, 8, 8)
+        ctx.strokeRect(x + .5, .5, 7, 7)
     ],
     (ctx, x) => [
         ctx.fillStyle = '#4B8495',
@@ -11,7 +11,7 @@ let drawSquare = [
     ],
     (ctx, x) => [
         ctx.strokeStyle = '#F2F7F6',
-        ctx.strokeRect(x, 0, 8, 8)
+        ctx.strokeRect(x + .5, .5, 7, 7)
     ],
     (ctx, x) => [
         ctx.fillStyle = '#F2F7F6',
