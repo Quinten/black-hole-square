@@ -20,7 +20,7 @@ let drawSquare = [
 ];
 
 let draw = (entities, entity, ctx) => {
-    let solved = dataSystem.load('solved');
+    let solved = dataSystem.load('solved') || [];
     let sequence = entities.game.levels.sequence;
     let current = entities.game.levels.current;
     let currentPuzzleId = sequence[current];
