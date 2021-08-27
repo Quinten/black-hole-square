@@ -1,5 +1,11 @@
 let ctx = undefined;
 let noteNodes = undefined;
+let biquadFilter = undefined;
+let musicVolume = undefined;
+let delayEffect = undefined;
+let feedback = undefined;
+let delayVolume = undefined;
+let index = 0;
 
 let playSong = (options = {}) => {
 
@@ -70,24 +76,23 @@ let playSong = (options = {}) => {
             ctx.close() // dispose old context
             ctx = new AudioContext();
         }
-
-        let biquadFilter = ctx.createBiquadFilter();
+        biquadFilter = ctx.createBiquadFilter();
         biquadFilter.connect(ctx.destination);
         biquadFilter.type = 'lowpass';
         biquadFilter.frequency.value = 920;
         //biquadFilter.gain.value = 25;
 
-        let musicVolume = ctx.createGain();
+        musicVolume = ctx.createGain();
         musicVolume.connect(biquadFilter);
         musicVolume.gain.value = 0.8;
 
-        let delayEffect = ctx.createDelay(60 / bpm);
+        delayEffect = ctx.createDelay(60 / bpm);
         delayEffect.delayTime.value = 60 / bpm;
-        let feedback = ctx.createGain();
+        feedback = ctx.createGain();
         feedback.gain.value = 0.25;
         delayEffect.connect(feedback);
         feedback.connect(delayEffect);
-        let delayVolume = ctx.createGain();
+        delayVolume = ctx.createGain();
         delayVolume.gain.value = 0.5;
         delayVolume.connect(musicVolume);
         delayEffect.connect(delayVolume);
@@ -99,8 +104,6 @@ let playSong = (options = {}) => {
             return node;
         });
     }
-
-    let index = 0;
 
     let nextNote = 0;
     let nextNoteTick = 0;
@@ -120,7 +123,7 @@ let playSong = (options = {}) => {
             //ctx.close();
             return;
         }
-        if ((!mLooped && ctx.currentTime > nextNoteTick + 1) || (!bLooped && ctx.currentTime > nextPluckTick + 1)) {
+        if ((!mLooped && ctx.currentTime > nextNoteTick + .35) || (!bLooped && ctx.currentTime > nextPluckTick + .35)) {
             nextNote = 0;
             nextPluck = 0;
             nextNoteTick = nextPluckTick = ctx.currentTime;
