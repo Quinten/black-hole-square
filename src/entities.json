@@ -41,6 +41,7 @@
         "xintohole",
         "movex",
         "shoveit",
+        "zeroneutron",
         "firstneutron",
         "circularneutron",
         "end",
@@ -91,7 +92,7 @@
       "taps": "",
       "text": [
         "Did you know Coil subscribers",
-        "get 20% bonus levels?",
+        "get 4 bonus levels?",
         "",
         "They also get stars for every",
         "puzzle solution they find and",
@@ -294,6 +295,20 @@
       "taps": 14
     }
   },
+  "zeroneutron": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 6, 0, 0, 0, 0,
+        0, 0, 0, 8, 7, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true,
+      "taps": 5
+    }
+  },
   "firstneutron": {
     "puzzle": {
       "grid": [
@@ -319,7 +334,7 @@
         0, 0, 0, 4, 0, 0
       ],
       "init": true,
-      "taps": 16
+      "taps": 14
     }
   },
   "level": {
