@@ -9,8 +9,8 @@ let resize = (game, canvas) => {
     if (w === window.innerWidth && h === window.innerHeight) {
         return;
     }
-    w = window.innerWidth;
-    h = window.innerHeight;
+    w = document.body.clientWidth;
+    h = document.body.clientHeight;
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
     canvas.width = w * window.devicePixelRatio;
