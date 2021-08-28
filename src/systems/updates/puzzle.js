@@ -134,18 +134,16 @@ let update = (entities, entity, time, delta) => {
                 < 1 / entities.game.canvas.zoom
             ) {
                 let levels = entities.game.levels;
+                let sequence = (
+                    dataSystem.load('payed')
+                ) ? entities.game.levels.coil : entities.game.levels.sequence;
                 if (swipedLeft || solution.length === 0) {
-                    /*
-                    levels.current = (levels.current + dir
-                        + levels.sequence.length)
-                        % levels.sequence.length;
-                    */
                     levels.current = Math.min(
                         Math.max(levels.current + dir, 0),
-                        levels.sequence.length - 1
+                        sequence.length - 1
                     );
                 }
-                let puzzleId = levels.sequence[levels.current];
+                let puzzleId = sequence[levels.current];
                 entities[puzzleId].puzzle.init = true;
                 let state = entities.level.state;
                 state.updates = [puzzleId];
@@ -348,8 +346,13 @@ let update = (entities, entity, time, delta) => {
                     soundSystem.playSong({melody});
                     entities.feedback.text.text = 'Nailed it!';
                     let levels = entities.game.levels;
-                    solved.push(levels.sequence[levels.current]);
-                    dataSystem.save('solved', solved);
+                    let sequence = (
+                        dataSystem.load('payed')
+                    ) ? levels.coil : levels.sequence;
+                    if (solved.indexOf(sequence[levels.current]) < 0) {
+                        solved.push(sequence[levels.current]);
+                        dataSystem.save('solved', solved);
+                    }
                 // check game over based on no taps left
                 } else if (tapsLeft <= 0) {
                     swipedRight = true;
@@ -372,13 +375,6 @@ let update = (entities, entity, time, delta) => {
                     swipedRight = true;
                     swipeWait = 750;
                     swiped = true;
-                    /*
-                    let levels = entities.game.levels;
-                    let puzzleId = levels.sequence[levels.current];
-                    entities[puzzleId].puzzle.init = true;
-                    let state = entities.level.state;
-                    state.updates = [puzzleId];
-                    */
                     let bass = ['4-', '4e3', '6a2'];
                     soundSystem.playSong({bass});
                     entities.feedback.text.text = 'Oops';

@@ -21,7 +21,9 @@ let drawSquare = [
 
 let draw = (entities, entity, ctx) => {
     let solved = dataSystem.load('solved') || [];
-    let sequence = entities.game.levels.sequence;
+    let sequence = (
+        dataSystem.load('payed')
+    ) ? entities.game.levels.coil : entities.game.levels.sequence;
     let current = entities.game.levels.current;
     let currentPuzzleId = sequence[current];
     let dots = [];

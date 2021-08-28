@@ -1,3 +1,5 @@
+import dataSystem from '../data.js';
+
 let update = (entities, entity, time, delta) => {
     if (entity.position !== undefined) {
         entity.position.x = entities.game.canvas.gW - 48;
@@ -9,7 +11,10 @@ let update = (entities, entity, time, delta) => {
             return;
         }
         let levels = entities.game.levels;
-        let puzzleId = levels.sequence[levels.current];
+        let sequence = (
+            dataSystem.load('payed')
+        ) ? levels.coil : levels.sequence;
+        let puzzleId = sequence[levels.current];
         entities[puzzleId].puzzle.init = true;
         let state = entities.level.state;
         state.updates = [puzzleId];

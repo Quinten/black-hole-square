@@ -2,16 +2,16 @@ import updateSystem from './update.js';
 import drawSystem from './draw.js';
 import resizeSystem from './resize.js';
 import pointerSystem from './pointer.js';
+import dataSystem from './data.js';
 
-/*
 if (document.monetization) {
     document.monetization.addEventListener(
         'monetizationstart',
         _ => {
+            dataSystem.save('payed', true);
         }
     );
 }
-*/
 
 let setup = (entities) => {
     let game = entities.game;
