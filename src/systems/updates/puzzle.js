@@ -142,6 +142,7 @@ let update = (entities, entity, time, delta) => {
                         Math.max(levels.current + dir, 0),
                         sequence.length - 1
                     );
+                    dataSystem.save('current', levels.current);
                 }
                 let puzzleId = sequence[levels.current];
                 entities[puzzleId].puzzle.init = true;

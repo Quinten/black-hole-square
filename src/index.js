@@ -1,9 +1,18 @@
 import gameSystem from './systems/game.js';
+import dataSystem from './systems/data.js';
 
 import entities from './entities.json';
 
-// after launch add migrations here
-// ...
+let current = dataSystem.load('current');
+
+if (current !== undefined) {
+    entities.game.levels.current = current;
+    let sequence = (
+        dataSystem.load('payed')
+    ) ? entities.game.levels.coil : entities.game.levels.sequence;
+    let puzzleId = sequence[current];
+    entities.level.state.updates = [puzzleId];
+}
 
 gameSystem.setup(entities);
 
