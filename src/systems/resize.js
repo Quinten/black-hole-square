@@ -9,8 +9,13 @@ let resize = (game, canvas) => {
     if (w === window.innerWidth && h === window.innerHeight) {
         return;
     }
-    w = document.body.clientWidth;
-    h = document.body.clientHeight;
+    if (/(iPhone|iPad)/i.test(navigator.userAgent)) {
+        w = document.body.clientWidth;
+        h = document.body.clientHeight;
+    } else {
+        w = window.innerWidth;
+        h = window.innerHeight;
+    }
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
     canvas.width = w * window.devicePixelRatio;
