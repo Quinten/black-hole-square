@@ -8,10 +8,10 @@ let add = (game, canvas) => {
     let onR = e => {
         clearTimeout(resizeTOID);
         resizeTOID = setTimeout(_ => {
-            canvas.style.width = window.innerWidth + 'px';
-            canvas.style.height = window.innerHeight + 'px';
-            canvas.width = window.innerWidth * window.devicePixelRatio;
-            canvas.height = window.innerHeight * window.devicePixelRatio;
+            canvas.style.width = document.documentElement.clientWidth + 'px';
+            canvas.style.height = document.documentElement.clientHeight + 'px';
+            canvas.width = document.documentElement.clientWidth * window.devicePixelRatio;
+            canvas.height = document.documentElement.clientHeight * window.devicePixelRatio;
             game.canvas.w = canvas.width;
             game.canvas.h = canvas.height;
             targetRatio = game.canvas.tW / game.canvas.tH;
