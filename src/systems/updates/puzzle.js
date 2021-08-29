@@ -33,6 +33,19 @@ let swipedRight = false;
 let swipedLeft = false;
 let swipeWait = 0;
 let swiped = false;
+let wheelLeft = false;
+let wheelRight = false;
+
+window.addEventListener('wheel', e => {
+    if (swiped) {
+        return;
+    }
+    if (e.deltaX <= -1) {
+        wheelRight = true;
+    } else if (e.deltaX >= 1) {
+        wheelLeft = true;
+    }
+});
 
 let solution = [];
 
@@ -96,6 +109,32 @@ let update = (entities, entity, time, delta) => {
         //console.log(entities);
     }
     let game = entities.game;
+    if (wheelRight) {
+        if (entity.puzzle.lT) {
+            entities.feedback.text.text = entity.puzzle.lT;
+        } else if (solution.length === 0) {
+            entities.feedback.text.text = 'Back';
+        } else {
+            entities.feedback.text.text = 'Reset';
+        }
+        swipedRight = true;
+        swipeWait = 0;
+        swiped = true;
+        wheelRight = false;
+        return;
+    }
+    if (wheelLeft) {
+        if (entity.puzzle.rT) {
+            entities.feedback.text.text = entity.puzzle.rT;
+        } else {
+            entities.feedback.text.text = 'Skip';
+        }
+        swipedLeft = true;
+        swipeWait = 0;
+        swiped = true;
+        wheelLeft = false;
+        return;
+    }
     if (!swiped && game.pointer.isDown === true && (solution.length < entity.puzzle.taps || entity.puzzle.text)) {
         let swipeX = game.pointer.x - game.pointer.downX;
         game.canvas.oX = game.canvas.gX + swipeX;

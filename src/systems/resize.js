@@ -10,11 +10,11 @@ let resize = (game, canvas) => {
         return;
     }
 //    if (/(iPhone|iPad)/i.test(navigator.userAgent)) {
-        w = document.body.clientWidth;
-        h = document.body.clientHeight;
+//        w = document.body.clientWidth;
+//        h = document.body.clientHeight;
 //    } else {
-//        w = window.innerWidth;
-//        h = window.innerHeight;
+        w = window.innerWidth;
+        h = window.innerHeight;
 //    }
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
