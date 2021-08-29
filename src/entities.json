@@ -400,14 +400,6 @@
       "updates": []
     }
   },
-  "resetbutton": {
-    "position": {
-      "x": 0,
-      "y": 0,
-      "origin": "canvas"
-    },
-    "resetbutton": {}
-  },
   "tapstext": {
     "position": {
       "x": 24,
