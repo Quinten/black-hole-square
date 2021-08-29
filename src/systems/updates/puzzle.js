@@ -37,6 +37,7 @@ let swiped = false;
 let solution = [];
 
 let solved = dataSystem.load('solved') || [];
+let solutions = dataSystem.load('solutions') || {};
 
 let update = (entities, entity, time, delta) => {
     if (entity.puzzle.init === true) {
@@ -227,8 +228,6 @@ let update = (entities, entity, time, delta) => {
             },
             xsquare: a => {
                 // remove square
-                // TODO proper disappear animation
-                // TODO store for undo
                 if (a) {
                     delete entities['piece' + i].xsquare;
                 }
@@ -236,8 +235,6 @@ let update = (entities, entity, time, delta) => {
             },
             neutronstar: a => {
                 // remove square
-                // TODO proper disappear animation
-                // TODO store for undo
                 if (a) {
                     delete entities['piece' + i].neutronstar;
                     entities['piece' + i].blackhole = {};
@@ -303,7 +300,6 @@ let update = (entities, entity, time, delta) => {
             });
             entities[firstId] = prev;
             // remove square
-            // TODO store for undo
             entities[firstId].home = firstHome;
             entities[firstId].home.suck = true;
             return changes.length;
@@ -361,9 +357,18 @@ let update = (entities, entity, time, delta) => {
                     let sequence = (
                         dataSystem.load('payed')
                     ) ? levels.coil : levels.sequence;
-                    if (solved.indexOf(sequence[levels.current]) < 0) {
-                        solved.push(sequence[levels.current]);
+                    let puzzleId = sequence[levels.current];
+                    if (solved.indexOf(puzzleId) < 0) {
+                        solved.push(puzzleId);
                         dataSystem.save('solved', solved);
+                    }
+                    if (solutions[puzzleId] === undefined) {
+                        solutions[puzzleId] = [];
+                    }
+                    let jsonSolution = JSON.stringify(solution);
+                    if (solutions[puzzleId].indexOf(jsonSolution) === -1) {
+                        solutions[puzzleId].push(jsonSolution);
+                        dataSystem.save('solutions', solutions);
                     }
                 // check game over based on no taps left
                 } else if (tapsLeft <= 0) {
