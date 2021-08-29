@@ -13,10 +13,9 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <link rel="icon" type="image/png" href="icon.png">
         <link rel="apple-touch-icon" href="icon.png">
-        <style>body,html{background-color:<%= htmlWebpackPlugin.options.background_color %>;margin:0;overflow:hidden;height:100%;}</style>
+<style>body,html{background-color:<%= htmlWebpackPlugin.options.background_color %>;margin:0;padding:0;overflow:hidden;width:100%;height:100%;position:fixed;top:0;left:0;}canvas{position:relative;display:block;}</style>
     </head>
     <body>
-        <div id="loading"></div>
         <script inline inline-asset="index" inline-asset-delete></script>
     </body>
 </html>
