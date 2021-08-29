@@ -193,53 +193,61 @@ let update = (entities, entity, time, delta) => {
         let i = x + y * 6;
         //console.log('klik', i);
         let moves = {
-            arrowup: _ => {
+            arrowup: a => {
                 return shiftPieces(
                     -6,
                     35,
-                    0
+                    0,
+                    a
                 );
             },
-            arrowright: _ => {
+            arrowright: a => {
                 return shiftPieces(
                     1,
                     i + (5 - (i % 6)),
-                    i - (i % 6)
+                    i - (i % 6),
+                    a
                 );
             },
-            arrowdown: _ => {
+            arrowdown: a => {
                 return shiftPieces(
                     6,
                     35,
-                    0
+                    0,
+                    a
                 );
             },
-            arrowleft: _ => {
+            arrowleft: a => {
                 return shiftPieces(
                     -1,
                     i + (5 - (i % 6)),
-                    i - (i % 6)
+                    i - (i % 6),
+                    a
                 );
             },
-            xsquare: _ => {
+            xsquare: a => {
                 // remove square
                 // TODO proper disappear animation
                 // TODO store for undo
-                delete entities['piece' + i].xsquare;
+                if (a) {
+                    delete entities['piece' + i].xsquare;
+                }
                 return 1;
             },
-            neutronstar: _ => {
+            neutronstar: a => {
                 // remove square
                 // TODO proper disappear animation
                 // TODO store for undo
-                delete entities['piece' + i].neutronstar;
-                entities['piece' + i].blackhole = {};
-                entities['top' + i].neutronstar = {};
-                entities['top' + i].home.suck = true;
+                if (a) {
+                    delete entities['piece' + i].neutronstar;
+                    entities['piece' + i].blackhole = {};
+                    entities['top' + i].neutronstar = {};
+                    entities['top' + i].home.suck = true;
+                }
                 return 1;
             }
         };
-        let shiftPieces = (search, max, min) => {
+        let shiftPieces = (search, max, min, applyChanges = true) => {
             //console.log('push stuff down');
             let next = entities['piece' + i];
             let j = i;
@@ -274,6 +282,9 @@ let update = (entities, entity, time, delta) => {
                     stop = true;
                 }
             }
+            if (!applyChanges) {
+                return changes.length;
+            }
             if (changes.length < 1) {
                 return 0;
             }
@@ -301,7 +312,7 @@ let update = (entities, entity, time, delta) => {
         Object.keys(moves).forEach(move => {
             if (clicked[move]) {
                 clicked.clicked = 16;
-                let nChanges = moves[move]();
+                let nChanges = moves[move](true);
                 if (nChanges > 0) {
                     solution.push(i);
                     let tunes = {
@@ -379,6 +390,30 @@ let update = (entities, entity, time, delta) => {
                     let bass = ['4-', '4e3', '6a2'];
                     soundSystem.playSong({bass});
                     entities.feedback.text.text = 'Oops';
+                // check for game over based on stuck
+                } else {
+                    i = 0;
+                    let stuck = true;
+                    while (i < 36 && stuck) {
+                        let tested = entities['piece' + i];
+                        Object.keys(moves).forEach(move => {
+                            if (tested[move]) {
+                                let nChanges = moves[move](false);
+                                if (nChanges > 0) {
+                                    stuck = false;
+                                }
+                            }
+                        });
+                        i = i + 1;
+                    }
+                    if (stuck) {
+                        swipedRight = true;
+                        swipeWait = 750;
+                        swiped = true;
+                        let bass = ['4-', '4e3', '6a2'];
+                        soundSystem.playSong({bass});
+                        entities.feedback.text.text = 'Stuck';
+                    }
                 }
             }
         });
