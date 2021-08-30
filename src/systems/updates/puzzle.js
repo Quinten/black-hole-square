@@ -56,7 +56,9 @@ let update = (entities, entity, time, delta) => {
     if (entity.puzzle.init === true) {
         entity.puzzle.init = false;
         solution= [];
-        entities.tapstext.text.text = '' + entity.puzzle.taps;
+        entities.tapstext.text.text = (entity.puzzle.taps)
+            ? entity.puzzle.taps + ' moves'
+            : entity.puzzle.taps;
         let state = entities.level.state;
         state.draws = [];
         entity.puzzle.grid.forEach((p, i) => {
@@ -373,7 +375,7 @@ let update = (entities, entity, time, delta) => {
                     soundSystem.playSong({melody});
                 }
                 let tapsLeft = entity.puzzle.taps - solution.length;
-                entities.tapstext.text.text = '' + tapsLeft;
+                entities.tapstext.text.text = tapsLeft + ' moves';
 
                 // check puzzle complete
                 if (!entity.puzzle.grid.some((e, i) => [
@@ -391,7 +393,7 @@ let update = (entities, entity, time, delta) => {
                     swiped = true;
                     let melody = ['4-', '2C3', '2D3', '4G3'];
                     soundSystem.playSong({melody});
-                    entities.feedback.text.text = 'Nailed it!';
+                    entities.feedback.text.text = 'Clean!';
                     let levels = entities.game.levels;
                     let sequence = (
                         dataSystem.load('payed')
@@ -433,7 +435,7 @@ let update = (entities, entity, time, delta) => {
                     swiped = true;
                     let bass = ['4-', '4e3', '6a2'];
                     soundSystem.playSong({bass});
-                    entities.feedback.text.text = 'Oops';
+                    entities.feedback.text.text = 'Not clean...';
                 // check for game over based on stuck
                 } else {
                     i = 0;

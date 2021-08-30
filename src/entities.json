@@ -28,35 +28,37 @@
       "sequence": [
         "idiotscreen",
         "startscreen",
-        "groundzero",
         "learnarrows",
+        "waitforme",
         "learnpush",
         "learnmoves",
         "firsttest",
-        "ad",
+        "backtoback",
+        "groundzero",
         "breakflow",
         "timebreak",
-        "xintohole",
+        "ad",
         "movex",
+        "xintohole",
         "shoveit",
-        "backtoback",
         "end",
         "orisit"
       ],
       "coil": [
         "idiotscreen",
         "startscreen",
-        "groundzero",
         "learnarrows",
+        "waitforme",
         "learnpush",
         "learnmoves",
         "firsttest",
+        "backtoback",
+        "groundzero",
         "breakflow",
         "timebreak",
-        "xintohole",
         "movex",
+        "xintohole",
         "shoveit",
-        "backtoback",
         "ty",
         "firstneutron",
         "backandforth",
@@ -195,6 +197,20 @@
       ],
       "init": true,
       "taps": 4
+    }
+  },
+  "waitforme": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 5, 0, 1, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 4, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true,
+      "taps": 5
     }
   },
   "learnpush": {
@@ -387,7 +403,7 @@
   "tapstext": {
     "position": {
       "x": 24,
-      "y": 72,
+      "y": 44,
       "origin": "game"
     },
     "text": {
