@@ -32,6 +32,7 @@
         "waitforme",
         "learnpush",
         "learnmoves",
+        "three",
         "firsttest",
         "backtoback",
         "groundzero",
@@ -51,6 +52,7 @@
         "waitforme",
         "learnpush",
         "learnmoves",
+        "three",
         "firsttest",
         "backtoback",
         "groundzero",
@@ -295,6 +297,20 @@
       ],
       "init": true,
       "taps": 11
+    }
+  },
+  "three": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 1, 0, 0, 0,
+        0, 5, 6, 0, 0, 0,
+        0, 0, 0, 4, 7, 0,
+        0, 0, 0, 1, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true,
+      "taps": 6
     }
   },
   "backtoback": {
