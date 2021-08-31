@@ -36,6 +36,7 @@
         "firsttest",
         "circus",
         "doublearrows",
+        "sidings",
         "backtoback",
         "groundzero",
         "breakflow",
@@ -44,6 +45,7 @@
         "movex",
         "xintohole",
         "shoveit",
+        "firstneutron",
         "end",
         "orisit"
       ],
@@ -58,6 +60,7 @@
         "firsttest",
         "circus",
         "doublearrows",
+        "sidings",
         "backtoback",
         "groundzero",
         "breakflow",
@@ -65,8 +68,9 @@
         "movex",
         "xintohole",
         "shoveit",
-        "ty",
         "firstneutron",
+        "ty",
+        "pushneutron",
         "backandforth",
         "circularneutron",
         "horses",
@@ -427,6 +431,34 @@
       ],
       "init": true,
       "taps": 15
+    }
+  },
+  "pushneutron": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 1, 0, 0, 0, 0,
+        0, 0, 7, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 1, 0, 8, 7, 0,
+        0, 0, 4, 0, 0, 0
+      ],
+      "init": true,
+      "taps": 8
+    }
+  },
+  "sidings": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 6, 0, 0,
+        0, 1, 2, 5, 0, 0,
+        0, 0, 0, 7, 2, 1,
+        0, 0, 0, 4, 0, 0,
+        0, 0, 0, 1, 0, 0
+      ],
+      "init": true,
+      "taps": 10
     }
   },
   "level": {
