@@ -34,6 +34,7 @@
         "learnmoves",
         "three",
         "firsttest",
+        "doublearrows",
         "backtoback",
         "groundzero",
         "breakflow",
@@ -54,6 +55,8 @@
         "learnmoves",
         "three",
         "firsttest",
+        "doublearrows",
+        "backtoback",
         "backtoback",
         "groundzero",
         "breakflow",
@@ -171,6 +174,20 @@
       ],
       "init": true,
       "taps": 6
+    }
+  },
+  "doublearrows": {
+    "puzzle": {
+      "grid": [
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 1, 2, 7, 7, 0,
+        0, 0, 4, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
+      ],
+      "init": true,
+      "taps": 5
     }
   },
   "learnmoves": {
