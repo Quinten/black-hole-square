@@ -197,7 +197,7 @@ let update = (entities, entity, time, delta) => {
                 let levels = entities.game.levels;
                 let sequence = (
                     dataSystem.load('payed')
-                ) ? entities.game.levels.coil : entities.game.levels.sequence;
+                ) ? entities.game.levels.wm : entities.game.levels.sequence;
                 if (swipedLeft || solution.length === 0) {
                     levels.current = Math.min(
                         Math.max(levels.current + dir, 0),
@@ -401,7 +401,7 @@ let update = (entities, entity, time, delta) => {
                     let levels = entities.game.levels;
                     let sequence = (
                         dataSystem.load('payed')
-                    ) ? levels.coil : levels.sequence;
+                    ) ? levels.wm : levels.sequence;
                     let puzzleId = sequence[levels.current];
                     if (solved.indexOf(puzzleId) < 0) {
                         solved.push(puzzleId);

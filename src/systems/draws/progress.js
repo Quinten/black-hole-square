@@ -23,7 +23,7 @@ let draw = (entities, entity, ctx) => {
     let solved = dataSystem.load('solved') || [];
     let sequence = (
         dataSystem.load('payed')
-    ) ? entities.game.levels.coil : entities.game.levels.sequence;
+    ) ? entities.game.levels.wm : entities.game.levels.sequence;
     let current = entities.game.levels.current;
     let currentPuzzleId = sequence[current];
     let dots = [];

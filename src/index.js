@@ -9,7 +9,7 @@ if (current !== undefined) {
     entities.game.levels.current = current;
     let sequence = (
         dataSystem.load('payed')
-    ) ? entities.game.levels.coil : entities.game.levels.sequence;
+    ) ? entities.game.levels.wm : entities.game.levels.sequence;
     let puzzleId = sequence[current];
     entities.level.state.updates = [puzzleId];
 }

@@ -44,7 +44,7 @@
         "pushneutron",
         "ad"
       ],
-      "coil": [
+      "wm": [
         "startscreen",
         "learnarrows",
         "waitforme",
@@ -78,14 +78,14 @@
       "text": [
         "Welcome to Black Hole Square!",
         "Clean up all the other squares",
-        "in the universe! Just tap them",
+        "in the universe. Just tap them",
         "and see what happens.",
         "",
-        "Swipe right to reset the level",
+        "Swipe right to reset a puzzle",
         "or go back to the old ones.",
-        "Swipe left to skip a level.",
+        "Swipe left to skip a puzzle.",
         "",
-        "Swipe left to start!"
+        "Swipe left to start"
       ],
       "lT": "Wrong way",
       "rT": "Let's go"
@@ -101,13 +101,12 @@
         "",
         "Thank you for playing!",
         "",
-        "Did you know Coil subscribers",
-        "get 3 bonus levels?",
-        "Go to coil.com to find out how",
-        "you can support creators",
-        "of internet content."
+        "Did you know you could",
+        "unlock 3 bonus puzzles",
+        "when you support this game",
+        "through Web Monetization?"
       ],
-      "rT": "Just dark here"
+      "rT": "Not too dark here"
     }
   },
   "ty": {
@@ -116,16 +115,17 @@
       "init": true,
       "taps": "",
       "text": [
-        "Thank you for supporting",
-        "this game through Coil.",
+        "Thank you",
+        "for supporting this game",
+        "through Web Monetization.",
         "",
-        "The next levels are only",
-        "for Coil subscribers.",
+        "The next 3 puzzles are only",
+        "for WM supporters.",
         "",
-        "Swipe left for bonus levels"
+        "Swipe left for bonus puzzles"
       ],
-      "lT": "Free levels",
-      "rT": "Bonus levels"
+      "lT": "Free puzzles",
+      "rT": "Bonus puzzles"
     }
   },
   "end": {
