@@ -472,7 +472,10 @@ let update = (entities, entity, time, delta) => {
         x =  (x / 48) | 0;
         y = (y / 48) | 0;
         let i = x + y * 6;
-        if (clickables.some(prop => entities['piece'+i][prop] !== undefined)) {
+        if (
+            entities['piece'+i] !== undefined
+            && clickables.some(prop => entities['piece'+i][prop] !== undefined)
+        ) {
            entities.game.pointer.pointing = true;
            entities['piece'+i].clicked = 1;
         }
