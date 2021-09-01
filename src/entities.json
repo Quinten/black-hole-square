@@ -327,10 +327,10 @@
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
+        0, 0, 0, 6, 0, 0,
         0, 0, 5, 0, 0, 0,
         0, 0, 0, 8, 0, 0,
         0, 0, 5, 0, 0, 0,
-        0, 0, 0, 4, 0, 0,
         0, 0, 0, 0, 0, 0
       ],
       "init": true,
@@ -407,12 +407,24 @@
         "feedback",
         "tunnel",
         "tapstext",
+        "titletext",
         "progress"
       ],
       "updates": []
     }
   },
   "tapstext": {
+    "position": {
+      "x": 296,
+      "y": 44,
+      "origin": "game"
+    },
+    "text": {
+      "text": "",
+      "align": "right"
+    }
+  },
+  "titletext": {
     "position": {
       "x": 24,
       "y": 44,

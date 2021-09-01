@@ -77,7 +77,14 @@ let update = (entities, entity, time, delta) => {
         solution= [];
         entities.tapstext.text.text = (entity.puzzle.taps)
             ? entity.puzzle.taps + ' moves'
-            : entity.puzzle.taps;
+            : '';
+        let sequence = (
+            dataSystem.load('payed')
+        ) ? entities.game.levels.wm : entities.game.levels.sequence;
+        let puzzleId = sequence[entities.game.levels.current];
+        entities.titletext.text.text = (entity.puzzle.taps)
+            ? 'The ' + puzzleId
+            : '';
         let state = entities.level.state;
         state.draws = [];
         entity.puzzle.grid.forEach((p, i) => {
