@@ -27,44 +27,44 @@
     "levels": {
       "sequence": [
         "startscreen",
-        "learnarrows",
-        "waitforme",
-        "learnpush",
-        "learnmoves",
-        "three",
-        "firsttest",
-        "circus",
-        "doublearrows",
-        "sidings",
-        "breakflow",
-        "timebreak",
-        "movex",
-        "xintohole",
-        "firstneutron",
-        "pushneutron",
+        "click",
+        "wait",
+        "push",
+        "move",
+        "tango",
+        "substitute",
+        "wander",
+        "double",
+        "conflict",
+        "extract",
+        "grab",
+        "twin",
+        "snare",
+        "sink",
+        "support",
         "ad"
       ],
       "wm": [
         "startscreen",
-        "learnarrows",
-        "waitforme",
-        "learnpush",
-        "learnmoves",
-        "three",
-        "firsttest",
-        "circus",
-        "doublearrows",
-        "sidings",
-        "breakflow",
-        "timebreak",
-        "movex",
-        "xintohole",
-        "firstneutron",
-        "pushneutron",
+        "click",
+        "wait",
+        "push",
+        "move",
+        "tango",
+        "substitute",
+        "wander",
+        "double",
+        "conflict",
+        "extract",
+        "grab",
+        "twin",
+        "snare",
+        "sink",
+        "support",
         "ty",
-        "backandforth",
-        "circularneutron",
-        "horses",
+        "snatch",
+        "swivel",
+        "turmoil",
         "end"
       ],
       "current": 0
@@ -141,7 +141,7 @@
       "rT": "Just dark here"
     }
   },
-  "firsttest": {
+  "substitute": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -155,7 +155,7 @@
       "taps": 6
     }
   },
-  "doublearrows": {
+  "double": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -169,7 +169,7 @@
       "taps": 5
     }
   },
-  "learnmoves": {
+  "move": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -183,7 +183,7 @@
       "taps": 5
     }
   },
-  "learnarrows": {
+  "click": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -197,7 +197,7 @@
       "taps": 4
     }
   },
-  "waitforme": {
+  "wait": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -211,7 +211,7 @@
       "taps": 5
     }
   },
-  "learnpush": {
+  "push": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -225,7 +225,7 @@
       "taps": 6
     }
   },
-  "breakflow": {
+  "extract": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -239,7 +239,7 @@
       "taps": 5
     }
   },
-  "timebreak": {
+  "grab": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -253,7 +253,7 @@
       "taps": 9
     }
   },
-  "xintohole": {
+  "snare": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -267,7 +267,7 @@
       "taps": 9
     }
   },
-  "movex": {
+  "twin": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -281,7 +281,7 @@
       "taps": 11
     }
   },
-  "three": {
+  "tango": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -295,7 +295,7 @@
       "taps": 6
     }
   },
-  "backandforth": {
+  "snatch": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -309,7 +309,7 @@
       "taps": 12
     }
   },
-  "horses": {
+  "turmoil": {
     "puzzle": {
       "grid": [
         0, 6, 0, 0, 6, 0,
@@ -323,7 +323,7 @@
       "taps": 20
     }
   },
-  "firstneutron": {
+  "sink": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -337,7 +337,7 @@
       "taps": 6
     }
   },
-  "circularneutron": {
+  "swivel": {
     "puzzle": {
       "grid": [
         0, 0, 6, 0, 0, 0,
@@ -351,7 +351,7 @@
       "taps": 14
     }
   },
-  "circus": {
+  "wander": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 1, 0,
@@ -365,7 +365,7 @@
       "taps": 15
     }
   },
-  "pushneutron": {
+  "support": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
@@ -379,7 +379,7 @@
       "taps": 8
     }
   },
-  "sidings": {
+  "conflict": {
     "puzzle": {
       "grid": [
         0, 0, 0, 0, 0, 0,
