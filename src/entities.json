@@ -26,7 +26,6 @@
     },
     "levels": {
       "sequence": [
-        "idiotscreen",
         "startscreen",
         "learnarrows",
         "waitforme",
@@ -39,16 +38,13 @@
         "sidings",
         "breakflow",
         "timebreak",
-        "ad",
         "movex",
         "xintohole",
         "firstneutron",
         "pushneutron",
-        "end",
-        "orisit"
+        "ad"
       ],
       "coil": [
-        "idiotscreen",
         "startscreen",
         "learnarrows",
         "waitforme",
@@ -69,24 +65,9 @@
         "backandforth",
         "circularneutron",
         "horses",
-        "end",
-        "orisit"
+        "end"
       ],
-      "current": 1
-    }
-  },
-  "idiotscreen": {
-    "puzzle": {
-      "grid": [],
-      "init": true,
-      "taps": "",
-      "text": [
-        "You swiped right!",
-        "",
-        "Swipe left, please."
-      ],
-      "lT": "Still wrong",
-      "rT": "Almost"
+      "current": 0
     }
   },
   "startscreen": {
@@ -104,10 +85,10 @@
         "or go back to the old ones.",
         "Swipe left to skip a level.",
         "",
-        "Swipe left to get started!"
+        "Swipe left to start!"
       ],
       "lT": "Wrong way",
-      "rT": "Let's go!"
+      "rT": "Let's go"
     }
   },
   "ad": {
@@ -116,11 +97,17 @@
       "init": true,
       "taps": "",
       "text": [
-        "Did you know Coil subscribers",
-        "get 4 bonus levels?",
+        "The edge of the universe...",
         "",
-        "Swipe left to skip this info"
-      ]
+        "Thank you for playing!",
+        "",
+        "Did you know Coil subscribers",
+        "get 3 bonus levels?",
+        "Go to coil.com to find out how",
+        "you can support creators",
+        "of internet content."
+      ],
+      "rT": "Just dark here"
     }
   },
   "ty": {
@@ -136,7 +123,9 @@
         "for Coil subscribers.",
         "",
         "Swipe left for bonus levels"
-      ]
+      ],
+      "lT": "Free levels",
+      "rT": "Bonus levels"
     }
   },
   "end": {
@@ -145,21 +134,11 @@
       "init": true,
       "taps": "",
       "text": [
-        "The edge of the universe..."
+        "The edge of the universe...",
+        "",
+        "Thank you for playing!"
       ],
-      "rT": "Darkness"
-    }
-  },
-  "orisit": {
-    "puzzle": {
-      "grid": [],
-      "init": true,
-      "taps": "",
-      "text": [
-        "Or is it?"
-      ],
-      "lT": "Darkness",
-      "rT": "Cold"
+      "rT": "Just dark here"
     }
   },
   "firsttest": {
