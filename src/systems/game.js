@@ -33,6 +33,9 @@ let setup = (entities) => {
 
         resizeSystem.resize(game, canvas);
 
+        let wasPointing = game.pointer.pointing;
+        game.pointer.pointing = false;
+
         let updates = [];
         let draws = [];
 
@@ -50,6 +53,12 @@ let setup = (entities) => {
         // reset pointer
         game.pointer.justDown = false;
         game.pointer.justUp = false;
+
+        if (wasPointing && !game.pointer.pointing) {
+            canvas.style.cursor = 'default';
+        } else if (!wasPointing && game.pointer.pointing) {
+            canvas.style.cursor = 'pointer';
+        }
 
         // clear canvas
         ctx.clearRect(0, 0, game.canvas.w, game.canvas.h);

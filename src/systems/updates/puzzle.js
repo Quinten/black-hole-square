@@ -29,6 +29,25 @@ let pieces = [
     ['position', 'size', 'home', 'neutronstar']
 ];
 
+let clickables = [
+    'xsquare',
+    'arrowup',
+    'arrowright',
+    'arrowdown',
+    'arrowleft',
+    'neutronstar'
+];
+
+let pushables = [
+    'blanksquare',
+    'xsquare',
+    'arrowup',
+    'arrowright',
+    'arrowdown',
+    'arrowleft',
+    'neutronstar'
+];
+
 let swipedRight = false;
 let swipedLeft = false;
 let swipeWait = 0;
@@ -293,15 +312,7 @@ let update = (entities, entity, time, delta) => {
             let stop = false;
             while (!stop) {
                 next = entities['piece' + j];
-                if ([
-                    'blanksquare',
-                    'xsquare',
-                    'arrowup',
-                    'arrowright',
-                    'arrowdown',
-                    'arrowleft',
-                    'neutronstar'
-                ].some(prop => next[prop] !== undefined)) {
+                if (pushables.some(prop => next[prop] !== undefined)) {
                     changes.unshift('top' + j);
                     changes.push('piece' + j);
                 } else {
@@ -378,16 +389,9 @@ let update = (entities, entity, time, delta) => {
                 entities.tapstext.text.text = tapsLeft + ' moves';
 
                 // check puzzle complete
-                if (!entity.puzzle.grid.some((e, i) => [
-                        'blanksquare',
-                        'xsquare',
-                        'arrowup',
-                        'arrowright',
-                        'arrowdown',
-                        'arrowleft',
-                        'neutronstar'
-                    ].some(prop => entities['piece' + i][prop] !== undefined)
-                )) {
+                if (!entity.puzzle.grid.some((e, i) => pushables.some(
+                    prop => entities['piece' + i][prop] !== undefined
+                ))) {
                     swipedLeft = true;
                     swipeWait = 750;
                     swiped = true;
@@ -420,15 +424,9 @@ let update = (entities, entity, time, delta) => {
                     soundSystem.playSong({bass});
                     entities.feedback.text.text = 'Out of moves!';
                 // check for game over based on no clickables left
-                } else if (!entity.puzzle.grid.some((e, i) => [
-                        'xsquare',
-                        'arrowup',
-                        'arrowright',
-                        'arrowdown',
-                        'arrowleft',
-                        'neutronstar'
-                    ].some(prop => entities['piece' + i][prop] !== undefined)
-                )) {
+                } else if (!entity.puzzle.grid.some((e, i) => clickables.some(
+                    prop => entities['piece' + i][prop] !== undefined
+                ))) {
                     //console.log('No clickables left, but blank squares left!');
                     swipedRight = true;
                     swipeWait = 750;
@@ -463,6 +461,21 @@ let update = (entities, entity, time, delta) => {
                 }
             }
         });
+    } else if (!entities.game.pointer.isDown) {
+        let x = entities.game.pointer.x
+            - 16 - (entities.game.canvas.gW - entities.game.canvas.tW) / 2;
+        let y = entities.game.pointer.y
+            - 62 - (entities.game.canvas.gH - entities.game.canvas.tH) / 2;
+        if (x < 0 || x > 288 || y < 0 || y > 288) {
+            return;
+        }
+        x =  (x / 48) | 0;
+        y = (y / 48) | 0;
+        let i = x + y * 6;
+        if (clickables.some(prop => entities['piece'+i][prop] !== undefined)) {
+           entities.game.pointer.pointing = true;
+           entities['piece'+i].clicked = 1;
+        }
     }
 };
 
