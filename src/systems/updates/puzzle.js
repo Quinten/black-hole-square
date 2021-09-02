@@ -216,11 +216,15 @@ let update = (entities, entity, time, delta) => {
                     dataSystem.load('payed')
                 ) ? entities.game.levels.wm : entities.game.levels.sequence;
                 if (swipedLeft || solution.length === 0) {
+                    let oldLevel = levels.current;
                     levels.current = Math.min(
                         Math.max(levels.current + dir, 0),
                         sequence.length - 1
                     );
                     dataSystem.save('current', levels.current);
+                    if (oldLevel === levels.current) {
+                        dir = -dir;
+                    }
                 }
                 let puzzleId = sequence[levels.current];
                 entities[puzzleId].puzzle.init = true;
