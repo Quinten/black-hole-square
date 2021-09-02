@@ -50,6 +50,13 @@ let pushables = [
 
 let failSound = {bass: ['4-', '2e3', '6a2']};
 let victorySound = {melody: ['4-', '2C3', '2D3', '4G3']};
+let notes = ['C3', 'e3', 'a3', 'D3', 'G3', 'b3'];
+let tapSounds = {};
+let dabSounds = {};
+clickables.forEach((name, i) => {
+    tapSounds[name] = {melody: ['2' + notes[i]]};
+    dabSounds[name] = {melody: ['1' + notes[i]]};
+});
 
 let swipedRight = false;
 let swipedLeft = false;
@@ -373,27 +380,9 @@ let update = (entities, entity, time, delta) => {
                 let nChanges = moves[move](true);
                 if (nChanges > 0) {
                     solution.push(i);
-                    let tunes = {
-                        neutronstar: '2b3',
-                        xsquare: '2C3',
-                        arrowup: '2e3',
-                        arrowright: '2a3',
-                        arrowdown: '2D3',
-                        arrowleft: '2G3'
-                    };
-                    let melody = [tunes[move]];
-                    soundSystem.playSong({melody});
+                    soundSystem.playSong(tapSounds[move]);
                 } else {
-                    let tunes = {
-                        neutronstar: '1b3',
-                        xsquare: '1C3',
-                        arrowup: '1e3',
-                        arrowright: '1a3',
-                        arrowdown: '1D3',
-                        arrowleft: '1G3'
-                    };
-                    let melody = [tunes[move]];
-                    soundSystem.playSong({melody});
+                    soundSystem.playSong(dabSounds[move]);
                 }
                 let tapsLeft = entity.puzzle.taps - solution.length;
                 entities.tapstext.text.text = tapsLeft + ' moves';
