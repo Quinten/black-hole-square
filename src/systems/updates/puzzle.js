@@ -49,6 +49,7 @@ let pushables = [
 ];
 
 let failSound = {bass: ['4-', '2e3', '6a2']};
+let victorySound = {melody: ['4-', '2C3', '2D3', '4G3']};
 
 let swipedRight = false;
 let swipedLeft = false;
@@ -404,8 +405,7 @@ let update = (entities, entity, time, delta) => {
                     swipedLeft = true;
                     swipeWait = 750;
                     swiped = true;
-                    let melody = ['4-', '2C3', '2D3', '4G3'];
-                    soundSystem.playSong({melody});
+                    soundSystem.playSong(victorySound);
                     entities.feedback.text.text = 'Clean!';
                     let levels = entities.game.levels;
                     let sequence = (
