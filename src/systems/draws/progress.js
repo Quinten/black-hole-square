@@ -1,5 +1,3 @@
-import dataSystem from '../data.js';
-
 let drawSquare = [
     (ctx, x) => [
         ctx.fillStyle = '#4B8495',
@@ -20,26 +18,7 @@ let drawSquare = [
 ];
 
 let draw = (entities, entity, ctx) => {
-    let solved = dataSystem.load('solved') || [];
-    let sequence = (
-        dataSystem.load('payed')
-    ) ? entities.game.levels.wm : entities.game.levels.sequence;
-    let current = entities.game.levels.current;
-    let currentPuzzleId = sequence[current];
-    let dots = [];
-    sequence.forEach(puzzleId => {
-        let puzzle = entities[puzzleId].puzzle;
-        if (puzzle.grid.length) {
-            let dot = 0;
-            if (solved.indexOf(puzzleId) > -1) {
-                dot = dot + 1;
-            }
-            if (puzzleId === currentPuzzleId) {
-                dot = dot + 2;
-            }
-            dots.push(dot);
-        }
-    });
+    let dots = entity.progress.dots;
     dots.forEach((dot, i) => {
         drawSquare[dot](
             ctx,

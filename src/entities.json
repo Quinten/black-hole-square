@@ -410,7 +410,9 @@
         "titletext",
         "progress"
       ],
-      "updates": []
+      "updates": [
+        "progress"
+      ]
     }
   },
   "tapstext": {
@@ -479,6 +481,7 @@
       "origin": "center"
     },
     "progress": {
+      "dots": []
     }
   }
 }
