@@ -48,6 +48,8 @@ let pushables = [
     'neutronstar'
 ];
 
+let failSound = {bass: ['4-', '2e3', '6a2']};
+
 let swipedRight = false;
 let swipedLeft = false;
 let swipeWait = 0;
@@ -427,8 +429,7 @@ let update = (entities, entity, time, delta) => {
                     swipedRight = true;
                     swipeWait = 750;
                     swiped = true;
-                    let bass = ['4-', '2e3', '6a2'];
-                    soundSystem.playSong({bass});
+                    soundSystem.playSong(failSound);
                     entities.feedback.text.text = 'Out of moves!';
                 // check for game over based on no clickables left
                 } else if (!entity.puzzle.grid.some((e, i) => clickables.some(
@@ -438,8 +439,7 @@ let update = (entities, entity, time, delta) => {
                     swipedRight = true;
                     swipeWait = 750;
                     swiped = true;
-                    let bass = ['4-', '4e3', '6a2'];
-                    soundSystem.playSong({bass});
+                    soundSystem.playSong(failSound);
                     entities.feedback.text.text = 'Not clean...';
                 // check for game over based on stuck
                 } else {
@@ -461,8 +461,7 @@ let update = (entities, entity, time, delta) => {
                         swipedRight = true;
                         swipeWait = 750;
                         swiped = true;
-                        let bass = ['4-', '4e3', '6a2'];
-                        soundSystem.playSong({bass});
+                        soundSystem.playSong(failSound);
                         entities.feedback.text.text = 'Stuck';
                     }
                 }
