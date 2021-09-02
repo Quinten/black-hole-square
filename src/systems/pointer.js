@@ -8,6 +8,7 @@ let add = (game, canvas) => {
     let adjust;
     let pointerX;
     let pointerY;
+    let mouseEntered = false;
 
     let handlePointerDown = (x, y) => {
         pointer.x = x;
@@ -16,6 +17,7 @@ let add = (game, canvas) => {
         pointer.downY = y;
         pointer.justDown = true;
         pointer.isDown = true;
+        mouseEntered = false;
     };
 
     let handlePointerMove = (x, y) => {
@@ -24,6 +26,10 @@ let add = (game, canvas) => {
     };
 
     let handlePointerUp = (x, y) => {
+        if (mouseEntered) {
+            mouseEntered = false;
+            return;
+        }
         pointer.x = x;
         pointer.y = y;
         pointer.justUp = true;
@@ -93,6 +99,17 @@ let add = (game, canvas) => {
         pointerX = e.changedTouches[0].clientX / adjust;
         pointerY = e.changedTouches[0].clientY / adjust;
         handlePointerUp(pointerX, pointerY);
+    });
+
+    canvas.addEventListener('mouseout', e => {
+        if (pointer.isDown) {
+            pointer.justUp = true;
+            pointer.isDown = false;
+        }
+    });
+
+    canvas.addEventListener('mouseenter', e => {
+        mouseEntered = true;
     });
 };
 
