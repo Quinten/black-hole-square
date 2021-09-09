@@ -7,9 +7,9 @@
       "tH": 416,
       "gW": 320,
       "gH": 416,
-      "oX": 0,
+      "oX": -13312,
       "oY": 48,
-      "gX": 2560,
+      "gX": 0,
       "gY": 48,
       "zoom": 1,
       "parentSelector": "body"
@@ -26,6 +26,7 @@
     },
     "levels": {
       "sequence": [
+        "titlescreen",
         "startscreen",
         "click",
         "wait",
@@ -45,6 +46,7 @@
         "ad"
       ],
       "wm": [
+        "titlescreen",
         "startscreen",
         "click",
         "wait",
@@ -70,6 +72,40 @@
       "current": 0
     }
   },
+  "titlescreen": {
+    "puzzle": {
+      "grid": [],
+      "init": true,
+      "taps": "",
+      "text": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Swipe left to start"
+      ],
+      "lT": " ",
+      "rT": " ",
+      "noBoard": true
+    }
+  },
+  "maintitle": {
+    "maintitle": {},
+    "position": {
+      "x": -160,
+      "y": -208,
+      "origin": "center"
+    }
+  },
   "startscreen": {
     "puzzle": {
       "grid": [],
@@ -85,10 +121,10 @@
         "or go back to the old ones.",
         "Swipe left to skip a puzzle.",
         "",
-        "Swipe left to start"
+        "Swipe left for first puzzle!"
       ],
       "lT": "Wrong way",
-      "rT": "Let's go"
+      "rT": "Let's puzzle"
     }
   },
   "ad": {
@@ -396,7 +432,7 @@
   "level": {
     "state": {
       "draws": [],
-      "updates": ["startscreen"]
+      "updates": ["titlescreen"]
     }
   },
   "controls": {

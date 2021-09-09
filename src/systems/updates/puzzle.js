@@ -144,7 +144,34 @@ let update = (entities, entity, time, delta) => {
                 );
             });
         }
-        //console.log(entities);
+        if (entity.puzzle.noBoard === true) {
+            entities.controls.state.draws = [
+                'tunnel',
+                'maintitle'
+            ];
+            entities.controls.state.updates = [];
+        } else if (entity.puzzle.text !== undefined) {
+            entities.controls.state.draws = [
+                'bgcut',
+                'bgout',
+                'feedback',
+                'tunnel'
+            ];
+            entities.controls.state.updates = [];
+        } else {
+            entities.controls.state.draws = [
+                'bgcut',
+                'bgout',
+                'feedback',
+                'tunnel',
+                'tapstext',
+                'titletext',
+                'progress'
+            ];
+            entities.controls.state.updates = [
+                'progress'
+            ];
+        }
     }
     let game = entities.game;
     if (wheelRight) {
