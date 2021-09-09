@@ -18,7 +18,7 @@ let paths = [
 
 let shapes = paths.map(d => {
     let path = new Path2D(d);
-    let speed = .5 + Math.random();
+    let speed = 2 + Math.random();
     speed = speed * ((Math.random() > .5) ? 1 : -1);
     return {path, speed};
 });

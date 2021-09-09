@@ -231,7 +231,7 @@ let update = (entities, entity, time, delta) => {
             dir = -1;
         }
         game.canvas.oX = game.canvas.oX
-            + (homeX - game.canvas.oX) / 6 * delta / 17;
+            + (homeX - game.canvas.oX) / 8 * delta / 17;
         game.canvas.oY = game.canvas.gY;
         if (swipeWait <= 0 && (swipedLeft || swipedRight)) {
             if (
