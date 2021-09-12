@@ -6,7 +6,7 @@
   "theme_color": "#0E181B",
   "foreground_color": "#F2F7F6",
   "author": "Quinten",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "icons": [
