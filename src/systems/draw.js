@@ -34,7 +34,7 @@ importTransforms(
     )
 );
 
-let process = (entities, ids, ctx) => {
+let process = (entities, ids, ctx, time, delta) => {
     ids.forEach(id => {
         let entity = entities[id];
         ctx.save();
@@ -44,12 +44,12 @@ let process = (entities, ids, ctx) => {
         );
         Object.keys(entity).forEach(component => {
             if (transforms[component] !== undefined) {
-                transforms[component].transform(entities, entity, ctx);
+                transforms[component].transform(entities, entity, ctx, time, delta);
             }
         });
         Object.keys(entity).forEach(component => {
             if (draws[component] !== undefined) {
-                draws[component].draw(entities, entity, ctx);
+                draws[component].draw(entities, entity, ctx, time, delta);
             }
         });
         ctx.restore();

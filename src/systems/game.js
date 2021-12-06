@@ -64,7 +64,7 @@ let setup = (entities) => {
         ctx.clearRect(0, 0, game.canvas.w, game.canvas.h);
 
         // draw stuff
-        drawSystem.process(entities, draws, ctx);
+        drawSystem.process(entities, draws, ctx, time, delta);
 
         // request next frame
         requestAnimationFrame(onF);

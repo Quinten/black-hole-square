@@ -32,17 +32,17 @@ let project = (vpX, vpY, fl, x, y, z, scale = 1, p = fl / (fl + z) * scale) => [
     vpY + y * p
 ];
 
-let draw = (entities, entity, ctx) => {
+let draw = (entities, entity, ctx, time, delta) => {
     ctx.globalCompositeOperation = 'destination-over';
     ctx.fillStyle = entity.tunnel.fill;
     quads.forEach((q) => {
-        q.start -= 8;
+        q.start -= 8 * delta / 17;
         if (q.start < -fl + 2) {
             q.length = fl / 2 + Math.random() * fl / 2;
             q.start = q.start + fl * 8;
             q.rotation = Math.random() * Math.PI * 2;
         }
-        q.rotation = q.rotation + angleZ;
+        q.rotation = q.rotation + angleZ * delta / 17;
         let points = [
             {x: -4, y: 80, z: q.start},
             {x: 4, y: 80, z: q.start},
