@@ -1,4 +1,4 @@
-# Black Hole Square
+# forked Black Hole Square
 
 A puzzle game for js13k 2021
 
