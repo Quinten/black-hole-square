@@ -43,7 +43,10 @@
         "snare",
         "sink",
         "support",
-        "ad"
+        "snatch",
+        "swivel",
+        "turmoil",
+        "end"
       ],
       "wm": [
         "titlescreen",
@@ -63,7 +66,6 @@
         "snare",
         "sink",
         "support",
-        "ty",
         "snatch",
         "swivel",
         "turmoil",
